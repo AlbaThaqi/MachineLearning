@@ -58,7 +58,8 @@ Përqindja e pikselëve të mbuluar me reshje në rajone specifike
 # Faza e parë
 ## Kërkesat për fazën e parë
 
-1. Përgatitja e modelit (5 pikë) – Data dorëzimit: 16.03.2025
+1. Përgatitja e modelit
+   
 
 
 ##  Kerkesat e ktinve me i kshyr ren edhe me i rujt 

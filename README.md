@@ -30,8 +30,8 @@ Ky dataset përmban të dhëna historike mbi reshjet në Shqipëri, të organizu
 
 **Karakteristikat kryesore të datasetit:**
 
-Rreshtat e datasetit: 558,091
-Kolonat e datasetit: 14
+-Numri i rreshtave: 558,091
+-Numri i kolonave: 14
 
 Të dhëna të organizuara sipas njësive administrative
 

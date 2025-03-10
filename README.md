@@ -32,6 +32,10 @@ Ky dataset përmban të dhëna historike mbi reshjet në Shqipëri, të organizu
 
 - Numri i rreshtave: 558,091
 - Numri i kolonave: 14
+- Tipet e të dhënave:
+- Kualiteti i të dhënave:
+- Numri i të dhënave të plota:
+- Numri i të dhënave null: 
 
 Të dhëna të organizuara sipas njësive administrative
 
@@ -59,6 +63,12 @@ Përqindja e pikselëve të mbuluar me reshje në rajone specifike
 ## Kërkesat për fazën e parë
 
 1. Përgatitja e modelit
+   ## Strategjia e trajtimit të vlerave të zbrazëta
+   ## Agregimi
+   ## Mostrimi
+   ## Detektimi dhe menaxhimi i outliers
+   ## Standardizimi i të dhënave
+   
    
 
 

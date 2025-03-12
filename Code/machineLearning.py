@@ -22,3 +22,7 @@ for column in numerical_columns:
     print(f"Unique values in {column}: ", dataset[column].unique())
 
 dataset.replace({'?': None, 'missing': None, 'N/A': None}, inplace=True)
+
+
+numerical_columns = [col for col in dataset.columns if dataset[col].dtype in ['int64', 'float64']]
+print("Numerical columns: ", numerical_columns)

@@ -37,7 +37,11 @@ Ky dataset përmban të dhëna historike mbi reshjet në Shqipëri, të organizu
 
 - Kualiteti i të dhënave:
 - Numri i të dhënave të plota:
-- Numri i të dhënave null: 
+- ![image](https://github.com/user-attachments/assets/9d2ba501-c42b-45f2-b3f4-78683b210efd)
+
+- Numri i të dhënave null:
+- ![image](https://github.com/user-attachments/assets/93a54b9b-0d5b-4bf7-835f-4eaef8102564)
+
 
 Të dhëna të organizuara sipas njësive administrative
 

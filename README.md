@@ -33,6 +33,8 @@ Ky dataset përmban të dhëna historike mbi reshjet në Shqipëri, të organizu
 - Numri i rreshtave: 558,091
 - Numri i kolonave: 14
 - Tipet e të dhënave:
+- ![image](https://github.com/user-attachments/assets/5df4274f-e492-4bdf-a8bc-378e6a67ac47)
+
 - Kualiteti i të dhënave:
 - Numri i të dhënave të plota:
 - Numri i të dhënave null: 

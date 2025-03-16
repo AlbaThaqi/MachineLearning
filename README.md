@@ -1,5 +1,5 @@
 
-# Titulli :   Parashikimi i Reshjeve në Shqipëri me Machine Learning
+# Projekti :   Parashikimi i Reshjeve të shiut në Shqipëri me Machine Learning
 
 **Lënda**:  Machine Learning
 

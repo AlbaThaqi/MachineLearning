@@ -13,7 +13,7 @@
 
 **Fakulteti**: Fakulteti i Inxhinierisë Elektrike dhe Kompjuterike - FIEK
 
-**Universititeti** :Universiteti i Prishtinës - "Hasan Prishtina"
+**Universititeti** : Universiteti i Prishtinës - " Hasan Prishtina "
 
 ## Anëtarët e grupit:
 
@@ -98,7 +98,7 @@ Përqindja e pikselëve të mbuluar me reshje në rajone specifike
 
    ## Agregimi
    - Është realizuar duke kombinuar 3 kolona:
-   - 1. adm2_id (identifikues i regjioneve administrative)
+     1. adm2_id (identifikues i regjioneve administrative)
      2. ADM2_PCODE (kodi për identifikimin e regjioneve administrative)
      3. year_month (një periudh e derivuar nga kolona *date*)
         

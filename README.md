@@ -69,6 +69,13 @@ Përqindja e pikselëve të mbuluar me reshje në rajone specifike
 ## Kërkesat për fazën e parë
 
 # 1. Përgatitja e modelit
+
+  ## Ngarkimi i dataset-it
+  - Ngarkimi i dataset-it është realizuar duke përdorur librarinë *pandas*. Përmes funksionit *.head()*, printohen pesë rreshtat e parë të datasetit së bashku me të dhënat.
+  - ![image](https://github.com/user-attachments/assets/83907115-3e8b-4b76-815f-1b753e21dd7b)
+
+
+
    ## Strategjia e trajtimit të vlerave të zbrazëta
    ## Agregimi
    ## Mostrimi

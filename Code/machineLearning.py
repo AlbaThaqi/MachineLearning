@@ -1,7 +1,8 @@
 import pandas
 import numpy
 from sklearn.preprocessing import LabelEncoder
-
+from sklearn.preprocessing import StandardScaler
+from scipy.stats import zscore
 dataset = pandas.read_csv("dataset/alb-rainfall-adm2-full.csv")
 print(dataset.head())
 # print(dataset.info())

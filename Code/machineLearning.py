@@ -66,8 +66,8 @@ for column in numerical_columns:
 # columns_to_transform = ["rfh", "rfh_avg", "r1h", "r1h_avg", "r3h", "r3h_avg", "rfq", "r1q", "r3q"]
 # dataset[columns_to_transform] = dataset[columns_to_transform].apply(lambda x: numpy.log1p(x))
 
-# scaler = StandardScaler
-# dataset[numerical_columns] = scaler.fit_transform(numerical_columns)
+scaler = StandardScaler()
+dataset[numerical_columns] = scaler.fit_transform(numerical_columns)
 
 dataset['year_month'] = dataset['date'].dt.to_period('M')  
 

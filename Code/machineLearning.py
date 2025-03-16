@@ -1,5 +1,6 @@
 import pandas
 import numpy
+from sklearn.preprocessing import LabelEncoder
 
 dataset = pandas.read_csv("dataset/alb-rainfall-adm2-full.csv")
 print(dataset.head())
@@ -33,3 +34,13 @@ dataset[['n_pixels', 'rfh', 'rfh_avg', 'rfq']] = dataset[['n_pixels', 'rfh', 'rf
 dataset[['r1h', 'r1h_avg', 'r1q']] = dataset[['r1h', 'r1h_avg', 'r1q']].fillna(dataset[['r1h', 'r1h_avg', 'r1q']].median())
 dataset[['r3h', 'r3h_avg', 'r3q']] = dataset[['r3h', 'r3h_avg', 'r3q']].fillna(dataset[['r3h', 'r3h_avg', 'r3q']].median())
 
+dataset['date'] = pandas.to_datetime(dataset['date'], errors='coerce', format='%Y-%m-%d')
+print(dataset['date'].head())
+
+
+print(dataset[dataset['date'].isna()])
+dataset.drop(index=0, inplace=True)
+# print(dataset.isnull().sum())
+dataset = pandas.get_dummies(dataset, columns=['version'], drop_first=True)
+encoder = LabelEncoder()
+dataset['ADM2_PCODE'] = encoder.fit_transform(dataset['ADM2_PCODE'])

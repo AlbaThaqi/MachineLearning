@@ -58,3 +58,21 @@ dataset[columns_to_transform] = dataset[columns_to_transform].apply(lambda x: nu
 scaler = StandardScaler
 dataset[numerical_columns] = scaler.fit_transform(numerical_columns)
 
+
+
+
+
+dataset['year_month'] = dataset['date'].dt.to_period('M')  # Create a 'year-month' period
+aggregated_data = dataset.groupby(['adm2_id', 'ADM2_PCODE', 'year_month']).agg({
+    'n_pixels': 'mean',
+    'rfh': 'mean',
+    'rfh_avg': 'mean',
+    'r1h': 'mean',
+    'r1h_avg': 'mean',
+    'r3h': 'mean',
+    'r3h_avg': 'mean',
+    'rfq': 'mean',
+    'r1q': 'mean',
+    'r3q': 'mean'
+}).reset_index()
+

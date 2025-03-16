@@ -37,7 +37,7 @@ Dataseti është marrë nga website: https://data.humdata.org/, që është pjes
   
   ![image](https://github.com/user-attachments/assets/5df4274f-e492-4bdf-a8bc-378e6a67ac47)
 
-- Kualiteti i të dhënave:
+
 - Numri i të dhënave të plota:
   
  ![image](https://github.com/user-attachments/assets/9d2ba501-c42b-45f2-b3f4-78683b210efd)

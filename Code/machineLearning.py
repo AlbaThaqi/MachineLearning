@@ -24,8 +24,6 @@ for column in numerical_columns:
     print(f"Unique values in {column}: ", dataset[column].unique())
 
 dataset.replace({'?': None, 'missing': None, 'N/A': None}, inplace=True)
-
-
 numerical_columns = [col for col in dataset.columns if dataset[col].dtype in ['int64', 'float64']]
 print("Numerical columns: ", numerical_columns)
 
@@ -37,7 +35,6 @@ dataset[['r3h', 'r3h_avg', 'r3q']] = dataset[['r3h', 'r3h_avg', 'r3q']].fillna(d
 
 dataset['date'] = pandas.to_datetime(dataset['date'], errors='coerce', format='%Y-%m-%d')
 print(dataset['date'].head())
-
 
 print(dataset[dataset['date'].isna()])
 dataset.drop(index=0, inplace=True)
@@ -51,18 +48,11 @@ z_score = dataset[numerical_columns].apply(zscore)
 outliers = (z_score.abs()>3)
 print("Number of outliers per column (Z-Score):\n", outliers.sum())
 
-
 columns_to_transform = ["rfh", "rfh_avg", "r1h", "r1h_avg", "r3h", "r3h_avg", "rfq", "r1q", "r3q"]
 dataset[columns_to_transform] = dataset[columns_to_transform].apply(lambda x: numpy.log1p(x))
 
-
 scaler = StandardScaler
 dataset[numerical_columns] = scaler.fit_transform(numerical_columns)
-
-
-
-
-
 dataset['year_month'] = dataset['date'].dt.to_period('M')  # Create a 'year-month' period
 aggregated_data = dataset.groupby(['adm2_id', 'ADM2_PCODE', 'year_month']).agg({
     'n_pixels': 'mean',

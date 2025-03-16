@@ -27,6 +27,7 @@
 ## Përshkrimi i dataset-it
 
 Ky dataset përmban të dhëna historike mbi reshjet në Shqipëri, të organizuara sipas zonave administrative. Ai mund të përdoret për analizë klimatike, parashikime të reshjeve dhe studime mbi modelet e motit.
+Dataseti është marrë nga website: https://data.humdata.org/, që është pjesë e platformës Humanitarian Data Exchange (HDX). Kjo platformë menagjohet nga United Nations Office for the Coordination of Humanitarian Affairs (OCHA) dhe ka për qëllim të bëjë të lehtë qasjen në të dhëna për organizatat, ose hulumtuesit e ndryshëm në internet.
 
 **Karakteristikat kryesore të datasetit:**
 
@@ -94,22 +95,21 @@ Përqindja e pikselëve të mbuluar me reshje në rajone specifike
     Ky proces është kryer për të thjeshtuar analizën e datasetit dhe për të reduktuar të dhënat e tepërta dhe të panevojshme.
     Kolonat *adm2_id* dhe *ADM2_PCODE* përmbajnë vlera për të njejtin informacion, kështu që është më efikase të bashkohen në një kolonë të vetme.
 
-   ## Mostrimi
    ## Detektimi dhe menaxhimi i outliers
+   - Është realizuar duke përdorur Z-score, që identifikon data points, që devijojnë nga mesatarja. Një absolut e lartë e Z-score nënkupton që ka outlier. Zakonisht përdoret një kufi prej 3 të Z-score dhe të       gjitha vlerat mbi të llogariten si outlier.
+     ![image](https://github.com/user-attachments/assets/c1568048-9bdb-4e69-a0d5-16a7b8b23b27)
+   - Për t'i trajtuar të dhënat është përdorur metoda *capping/flooring*, për të reduktuar ndikimin e tyre pa i hequr komplet nga dataseti.
+   - ![image](https://github.com/user-attachments/assets/d11ede13-03cf-4f0a-a67c-1760ca5775be)
+
+
    ## Standardizimi i të dhënave
+   - Ky proces është realizuar për të siguruar që të dhënat numerike janë në një shkallë të njejtë. Është përdorur funksioni *StandardScaler()*, që i transformon të dhënat, ashtu që secila kategori të ketë një mesatare 0 dhe një devijim standard 1.
+     ![image](https://github.com/user-attachments/assets/1ee6bb38-f213-498e-89af-780332d5984f)
+
    
    
 
 
-##  Kerkesat e ktinve me i kshyr ren edhe me i rujt 
-Titullin e projektit;
-▪ Universiteti, fakulteti, niveli i studimeve, lënda në të cilën ndjeken leksionet dhe
-mësimdhënësit e lëndës në të cilën jeni të ngarkuar të punoni projektin;
-▪ Emrat e studentëve që kanë kontribuar në projekti;
-▪ Të definohet gjithmonë se për cilën fazë po paraqisni rezultatet e fituara, p.sh..:
-Faza I: Përshkruaj detyrat që janë të definuara (p.sh..: Përgatitja e modelit);
-▪ Përshkruaj detajet e datasetit tuaj, numrin e atributeve, objekteve, madhësinë e datasetit,
-burimi nga është marrë, etj.
-▪ Shfaq rezultate të gjeneruara përgjatë kësaj faze;
+
 
 

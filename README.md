@@ -68,7 +68,7 @@ Përqindja e pikselëve të mbuluar me reshje në rajone specifike
 # Faza e parë
 ## Kërkesat për fazën e parë
 
-1. Përgatitja e modelit
+# 1. Përgatitja e modelit
    ## Strategjia e trajtimit të vlerave të zbrazëta
    ## Agregimi
    ## Mostrimi

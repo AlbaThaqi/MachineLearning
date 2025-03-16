@@ -86,6 +86,14 @@ Përqindja e pikselëve të mbuluar me reshje në rajone specifike
     ![image](https://github.com/user-attachments/assets/01e8d860-005c-4432-b5b7-da9038d15131)
 
    ## Agregimi
+   - Është realizuar duke kombinuar 3 kolona:
+   - 1. adm2_id (identifikues i regjioneve administrative)
+     2. ADM2_PCODE (kodi për identifikimin e regjioneve administrative)
+     3. year_month (një periudh e derivuar nga kolona *date*)
+        ![image](https://github.com/user-attachments/assets/88148fc1-f5a9-4d70-87d7-d87ef55be5ff)
+    Ky proces është kryer për të thjeshtuar analizën e datasetit dhe për të reduktuar të dhënat e tepërta dhe të panevojshme.
+    Kolonat *adm2_id* dhe *ADM2_PCODE* përmbajnë vlera për të njejtin informacion, kështu që është më efikase të bashkohen në një kolonë të vetme.
+
    ## Mostrimi
    ## Detektimi dhe menaxhimi i outliers
    ## Standardizimi i të dhënave

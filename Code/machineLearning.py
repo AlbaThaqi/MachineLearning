@@ -44,3 +44,8 @@ dataset.drop(index=0, inplace=True)
 dataset = pandas.get_dummies(dataset, columns=['version'], drop_first=True)
 encoder = LabelEncoder()
 dataset['ADM2_PCODE'] = encoder.fit_transform(dataset['ADM2_PCODE'])
+
+#outliers
+z_score = dataset[numerical_columns].apply(zscore)
+outliers = (z_score.abs()>3)
+print("Number of outliers per column (Z-Score):\n", outliers.sum())

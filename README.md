@@ -120,8 +120,17 @@ Përqindja e pikselëve të mbuluar me reshje në rajone specifike
    ## Standardizimi i të dhënave
    - Ky proces është realizuar për të siguruar që të dhënat numerike janë në një shkallë të njejtë. Është përdorur funksioni *StandardScaler()*, që i transformon të dhënat, ashtu që secila kategori të ketë një mesatare 0 dhe një devijim standard 1.
      
-     ![image](https://github.com/user-attachments/assets/1ee6bb38-f213-498e-89af-780332d5984f)
+     ![image](https://github.com/user-attachments/assets/1ee6bb38-f213-498e-89af-780332d5984f
 
+     
+# Faza e dytë
+
+Faza II: Analiza dhe evaluimi (ritrajnimi)
+Përgjatë kësaj faze duhet të keni të paraqitura të gjitha detajet që keni aplikuar, rezultatet
+që keni fituar, jo vetëm të vendosen copy-paste por të përcjellën me sqarime e diskutime të
+detajuara. Kjo duke argumentuar dhe arsyetuar pse keni vendos të aplikoni/ përdorni atë
+formë të teknikave dhe rezultatet që keni fituar duke i diskutuar;
+Trajnimi i modelit
    
    
 

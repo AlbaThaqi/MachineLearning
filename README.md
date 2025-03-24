@@ -9,11 +9,12 @@
 
 **Studimet**: Master - Semestri II
 
-**Drejtimi** : Inxhinieri Kompjuterike dhe Softuerike -  IKS 
+**Universititeti** : Universiteti i Prishtinës - " Hasan Prishtina "
 
 **Fakulteti**: Fakulteti i Inxhinierisë Elektrike dhe Kompjuterike - FIEK
 
-**Universititeti** : Universiteti i Prishtinës - " Hasan Prishtina "
+**Drejtimi** : Inxhinieri Kompjuterike dhe Softuerike -  IKS 
+
 
 ## Anëtarët e grupit:
 

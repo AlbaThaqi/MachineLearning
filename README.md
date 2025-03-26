@@ -131,7 +131,8 @@ Përgjatë kësaj faze duhet të keni të paraqitura të gjitha detajet që keni
 që keni fituar, jo vetëm të vendosen copy-paste por të përcjellën me sqarime e diskutime të
 detajuara. Kjo duke argumentuar dhe arsyetuar pse keni vendos të aplikoni/ përdorni atë
 formë të teknikave dhe rezultatet që keni fituar duke i diskutuar;
-Trajnimi i modelit
+
+Trajnimi i modelit -- te datasetit- alb-rainfall
    
    
 

@@ -132,7 +132,7 @@ që keni fituar, jo vetëm të vendosen copy-paste por të përcjellën me sqari
 detajuara. Kjo duke argumentuar dhe arsyetuar pse keni vendos të aplikoni/ përdorni atë
 formë të teknikave dhe rezultatet që keni fituar duke i diskutuar;
 
-Trajnimi i modelit -- te datasetit- alb-rainfall
+Trajnimi i modelit - datasetit
    
    
 

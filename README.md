@@ -126,7 +126,7 @@ Përqindja e pikselëve të mbuluar me reshje në rajone specifike
      
 # Faza e dytë
 
-Faza II: Analiza dhe evaluimi (ritrajnimi)
+## Faza II: Analiza dhe evaluimi (ritrajnimi)
 Përgjatë kësaj faze duhet të keni të paraqitura të gjitha detajet që keni aplikuar, rezultatet
 që keni fituar, jo vetëm të vendosen copy-paste por të përcjellën me sqarime e diskutime të
 detajuara. Kjo duke argumentuar dhe arsyetuar pse keni vendos të aplikoni/ përdorni atë

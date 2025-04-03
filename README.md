@@ -127,6 +127,7 @@ Përqindja e pikselëve të mbuluar me reshje në rajone specifike
 # Faza e dytë
 
 ## Faza II: Analiza dhe evaluimi (ritrajnimi)
+Pas rezulateve të arritura në  fazën e parë  normalizimi, pastrimi i të  dhënave, binarimizimi 
 Përgjatë kësaj faze duhet të keni të paraqitura të gjitha detajet që keni aplikuar, rezultatet
 që keni fituar, jo vetëm të vendosen copy-paste por të përcjellën me sqarime e diskutime të
 detajuara. Kjo duke argumentuar dhe arsyetuar pse keni vendos të aplikoni/ përdorni atë

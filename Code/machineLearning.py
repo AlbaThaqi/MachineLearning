@@ -85,3 +85,6 @@ aggregated_data = dataset.groupby(['adm2_id', 'ADM2_PCODE', 'year_month']).agg({
 }).reset_index()
 
 #     Adding the second phase
+
+# Selecting numerical features
+features = ['n_pixels', 'rfh', 'rfh_avg', 'r1h', 'r1h_avg', 'r3h', 'r3h_avg', 'rfq', 'r1q', 'r3q']

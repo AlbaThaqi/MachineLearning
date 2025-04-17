@@ -4,6 +4,9 @@ import numpy
 from sklearn.preprocessing import LabelEncoder
 from sklearn.preprocessing import StandardScaler
 from scipy.stats import zscore
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+
 
 
 dataset = pandas.read_csv("dataset/alb-rainfall-adm2-full.csv")
@@ -85,6 +88,9 @@ aggregated_data = dataset.groupby(['adm2_id', 'ADM2_PCODE', 'year_month']).agg({
 }).reset_index()
 
 #     Adding the second phase
+
+X = aggregated_data.drop(columns=['rfq', 'adm2_id', 'ADM2_PCODE', 'year_month'])
+y = aggregated_data['rfq']
 # Split dataset into train (80%) and test (20%)
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 

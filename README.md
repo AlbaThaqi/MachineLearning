@@ -132,7 +132,7 @@ Kalojmë tek pjesa e trajnimit të datasetit e cila bazohet në disa kërkesa:
 
 Caktimi i 4 algoritmeve - 2 supervised (Decision Tree, Random Forest) + 2 unsupervised (Agglomerative Clustering, Spectral Clustering);	
 
-Aplikimi i metrikave të performancës së algoritmeve: Accuracy, Precision, Recall and F1 Score	
+Aplikimi i metrikave të performancës së algoritmeve: Accuracy, Precision, Recall and F1 Score.
 
 Vizualimi dhe diskutimet e dokumentuara të rezultateve duke krahasuar algoritmet ndërmjet tyre, arsyetimi i performancës kundrejt të dhënave të preprocesuara në dataset.
 
@@ -151,9 +151,9 @@ Në rastin tonë dataseti ynë ka kaluar gjitha proceset e fazës së parë me s
 
 Rain label distribution:
 
-0    282512
+0      282512
 
-1    275578
+1      275578
 
 ![image](https://github.com/user-attachments/assets/7a6689ad-5b8d-4907-a0a5-5c223dcd021d)
 
@@ -168,11 +168,11 @@ dhe duke përdorur stratify=y për të ruajtur shpërndarjen e barabartë të kl
  **Decision Tree** dhe **Random Forest** janë përdorur si algoritme klasifikimi për shkak të efikasitetit të tyre me të dhëna numerike dhe kapacitetit për të interpretuar rezultatet. 
  Decision Tree është i lehtë për t’u vizualizuar dhe kuptuar, duke u bazuar në ndarje të thjeshta të të dhënave.
 
- Në këtë pjesë të kodit, krijohet një model DecisionTreeClassifier me thellësi maksimale të kufizuar në 5 (max_depth=5) për të shmangur mbingarkimin (overfitting). Kjo pëmë vendimmarrjeje trajnohet mbi të dhënat e trajnimit X_train dhe y_train për të mësuar rregullat që ndajnë ditët me reshje të ulëta dhe të larta në bazë të veçorive meteorologjike
+ Në këtë pjesë të kodit, krijohet një model DecisionTreeClassifier me thellësi maksimale të kufizuar në 5 (max_depth=5) për të shmangur mbingarkimin (overfitting). Kjo pëmë vendimmarrjeje trajnohet mbi të dhënat e trajnimit X_train dhe y_train për të mësuar rregullat që ndajnë ditët me reshje të ulëta dhe të larta në bazë të veçorive meteorologjike.
  
  ![image](https://github.com/user-attachments/assets/414444c2-0c8d-4f18-a61d-6c5e6f5a842a)
 
- Rezultatet në datasetin tonë
+ Rezultatet në datasetin tonë:
  
 ![image](https://github.com/user-attachments/assets/ecd6de08-ed2b-4781-9a8e-61a33998b6bf)
 
@@ -183,7 +183,8 @@ dhe duke përdorur stratify=y për të ruajtur shpërndarjen e barabartë të kl
  
 ![image](https://github.com/user-attachments/assets/9afb82cf-823f-4c51-a9db-d795c0097180)
 
- Rezultatet në datasetin tonë                       
+ Rezultatet në datasetin tonë:
+ 
 ![image](https://github.com/user-attachments/assets/e86b17a4-fdbe-44b2-bccc-c148ec8ac70d)
                       
  Të dy janë të përshtatshëm për dataset-in e reshjeve sepse përballojnë mirë outliers dhe përzierje tiparesh me shkallë të ndryshme.
@@ -198,8 +199,33 @@ me 5 folds për të vlerësuar qëndrueshmërinë e modeleve në të gjithë dat
 
 # -- Algorimet Unsupervised--
 
+Dy algoritme të clustering-ut për të analizuar sjelljen e reshjeve në mënyrë të paetiketuar (unsupervised): Agglomerative Clustering, i cili bazohet në ndarje hierarkike duke bashkuar instancat më të ngjashme, dhe Spectral Clustering, që përdor informacionin e grafit për të identifikuar ndarje komplekse në të dhëna. 
+
+Të dy algoritmet janë aplikuar mbi një mostër të të dhënave të reduktuara me PCA dhe rezultatet janë krahasuar vizualisht 
+dhe me metrikën ARI për të vlerësuar sa mirë korrespondojnë me targetin rain_label.
+Të dyja këto qasje ndihmojnë në vlerësimin e strukturës latente të reshjeve pa pasur nevojë për klasifikim të drejtpërdrejtë.
+
+Agglomerative Clustering për të grupuar të dhënat në dy klasë pa përdorur etiketa. Ai fillon me çdo pikë si një cluster më vete dhe bashkon gradualisht pikët më të afërta. Etiketat e krijuara krahasohen me klasat reale (rain_label) përmes metrikave dhe ARI për të vlerësuar sa mirë janë grupuar të dhënat. Gjithashtu matet dhe koha e ekzekutimit të algoritmit.
+
+![image](https://github.com/user-attachments/assets/ecd27aa4-828b-410b-9c96-0747a927508b)
+
+Rezultatet në datasetin tonë:
+ 
 ![image](https://github.com/user-attachments/assets/f235e6b6-cbf5-487d-9323-1eeaf7aba0bd)
+
+
+
+Spectral Clustering për të grupuar të dhënat në dy klasë bazuar në afërsinë midis pikave, duke përdorur grafin e fqinjësisë më të afërt (affinity='nearest_neighbors'). Algoritmi përpunon një mostër të të dhënave (X_sample), llogarit etiketat e klasave përmes fit_predict, dhe më pas vlerëson performancën përmes metrikave si accuracy, precision, recall, F1-score dhe ARI (Adjusted Rand Index), së bashku me kohën totale të përpunimit.
+ 
+![image](https://github.com/user-attachments/assets/57c1fa70-637a-4150-9398-55c6b07897e4)
+
+Rezultatet në datasetin tonë:
+
 ![image](https://github.com/user-attachments/assets/43ed06fa-518b-44f0-8c4e-5a90136ed137)
+
+
+# Vizualizimi 
+
 
 
 

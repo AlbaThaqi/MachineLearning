@@ -147,5 +147,12 @@ def print_metrics(name, y_true, y_pred, plot=False):
 print_metrics("Decision Tree", y_test, y_pred_dt)
 print_metrics("Random Forest", y_test, y_pred_rf)
 
+# Cross-validation scores
+rf_cv_score = cross_val_score(rf, X, y, cv=5).mean()
+dt_cv_score = cross_val_score(dt, X, y, cv=5).mean()
+print("\nCross-validation Scores:")
+print("Decision Tree CV Accuracy:", round(dt_cv_score, 4))
+
+
 
 

@@ -127,16 +127,42 @@ Përqindja e pikselëve të mbuluar me reshje në rajone specifike
 # Faza e dytë
 
 ## Faza II: Analiza dhe evaluimi (ritrajnimi)
-Pas rezulateve të arritura në  fazën e parë  normalizimi, pastrimi i të  dhënave, binarimizimi 
-Përgjatë kësaj faze duhet të keni të paraqitura të gjitha detajet që keni aplikuar, rezultatet
-që keni fituar, jo vetëm të vendosen copy-paste por të përcjellën me sqarime e diskutime të
-detajuara. Kjo duke argumentuar dhe arsyetuar pse keni vendos të aplikoni/ përdorni atë
-formë të teknikave dhe rezultatet që keni fituar duke i diskutuar;
+Pas rezulateve të arritura në  fazën e parë  normalizimi, pastrimi i të  dhënave, binarimizimi dhe standardizimin e të dhënave.
+Kalojmë tek pjesa e trajnimit të datasetit e cila bazohet në disa kërkesa:
 
-Trajnimi i modelit - datasetit
+Caktimi i 4 algoritmeve - 2 supervised (Decision Tree, Random Forest) + 2 unsupervised (Agglomerative Clustering, Spectral Clustering);	
 
+Aplikimi i metrikave të performancës së algoritmeve: Accuracy, Precision, Recall and F1 Score	
 
+Vizualimi dhe diskutimet e dokumentuara të rezultateve duke krahasuar algoritmet ndërmjet tyre, arsyetimi i performancës kundrejt të dhënave të preprocesuara në dataset.
 
+# Trajnimi i modelit - datasetit
+Fillon me krijimin e një kolonë të re të quajtur rain_label, e cila përdoret si target për modelet klasifikuese.
+
+dataset['rain_label'] = (dataset['rfh'] > dataset['rfh'].median()).astype(int)
+
+Një pjesë që nuk duhet të injorohet është pjesa nëse dataseti është i balancuar apo i pabalancuar.
+
+print("\nRain label distribution:")
+print(dataset['rain_label'].value_counts())
+
+Në rastin tonë dataseti ynë ka kaluar gjitha proceset e fazës së parë me sukses dhe është një dataset i balancuar.
+Rain label distribution:
+0    282512
+1    275578
+
+Pasata krijohet një kopje e të gjitha kolonave numerike në X, e cila përfaqëson veçoritë (features) që do i jepen modelit. 
+Kolona rfh hiqet sepse është përdorur për të krijuar targetin rain_label dhe do të krijonte një "leakage" nëse lihet brenda. 
+Më pas, variabla y vendoset të jetë rain_label, që tregon nëse reshjet në një ditë të caktuar janë të larta apo jo. 
+Në fund, të dhënat ndahen në dy pjesë: X_train dhe X_test për trajnim dhe testim, duke përdorur train_test_split me 70% për trajnim dhe 30% për testim, 
+dhe duke përdorur stratify=y për të ruajtur shpërndarjen e barabartë të klasave në të dy ndarjet. 
+
+# --- Algorimet Supervised  ---
+
+ Decision Tree dhe Random Forest janë përdorur si algoritme klasifikimi për shkak të efikasitetit të tyre me të dhëna numerike dhe kapacitetit për të interpretuar rezultatet. 
+ Decision Tree është i lehtë për t’u vizualizuar dhe kuptuar, duke u bazuar në ndarje të thjeshta të të dhënave.
+ Random Forest, si një ansambël i shumë pemëve vendimmarrëse, ka avantazhin e performancës më të mirë dhe rezistencës ndaj overfitting.
+ Të dy janë të përshtatshëm për dataset-in e reshjeve sepse përballojnë mirë outliers dhe përzierje tiparesh me shkallë të ndryshme.
 ![image](https://github.com/user-attachments/assets/ecd6de08-ed2b-4781-9a8e-61a33998b6bf)
 - ![image](https://github.com/user-attachments/assets/e86b17a4-fdbe-44b2-bccc-c148ec8ac70d)
 - ![image](https://github.com/user-attachments/assets/ff6757a3-4e14-4c39-b0a0-d76577fa7de9)

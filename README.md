@@ -134,6 +134,19 @@ detajuara. Kjo duke argumentuar dhe arsyetuar pse keni vendos të aplikoni/ për
 formë të teknikave dhe rezultatet që keni fituar duke i diskutuar;
 
 Trajnimi i modelit - datasetit
+
+
+
+![image](https://github.com/user-attachments/assets/ecd6de08-ed2b-4781-9a8e-61a33998b6bf)
+- ![image](https://github.com/user-attachments/assets/e86b17a4-fdbe-44b2-bccc-c148ec8ac70d)
+- ![image](https://github.com/user-attachments/assets/ff6757a3-4e14-4c39-b0a0-d76577fa7de9)
+- ![image](https://github.com/user-attachments/assets/f235e6b6-cbf5-487d-9323-1eeaf7aba0bd)
+- ![image](https://github.com/user-attachments/assets/43ed06fa-518b-44f0-8c4e-5a90136ed137)
+
+
+
+
+
    
    
 

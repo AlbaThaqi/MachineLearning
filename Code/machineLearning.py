@@ -89,16 +89,4 @@ aggregated_data = dataset.groupby(['adm2_id', 'ADM2_PCODE', 'year_month']).agg({
 
 #     Adding the second phase
 
-X = aggregated_data.drop(columns=['rfq', 'adm2_id', 'ADM2_PCODE', 'year_month'])
-y = aggregated_data['rfq']
-# Split dataset into train (80%) and test (20%)
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-# Define the Neural Network model
-model = Sequential([
-    Dense(64, activation='relu', input_shape=(X_train.shape[1],)),
-    Dropout(0.3),
-    Dense(32, activation='relu'),
-    Dense(1, activation='linear')  # Linear activation for regression
-])
 

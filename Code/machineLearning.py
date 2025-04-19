@@ -117,5 +117,35 @@ dt = DecisionTreeClassifier(max_depth=5, random_state=0)
 dt.fit(X_train, y_train)
 y_pred_dt = dt.predict(X_test)
 
+# Random Forest with limited depth to avoid overfitting
+rf = RandomForestClassifier(max_depth=5, n_estimators=100, random_state=0)
+rf.fit(X_train, y_train)
+y_pred_rf = rf.predict(X_test)
+
+# Confusion matrix plot (one-time call only)
+def plot_confusion(name, y_true, y_pred):
+    cm = confusion_matrix(y_true, y_pred)
+    plt.figure(figsize=(5, 4))
+    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues')
+    plt.title(f'Confusion Matrix - {name}')
+    plt.xlabel('Predicted')
+    plt.ylabel('Actual')
+    plt.tight_layout()
+    plt.show()
+
+# Metrics function
+def print_metrics(name, y_true, y_pred, plot=False):
+    print(f"\n{name} Results:")
+    print("Accuracy :", round(accuracy_score(y_true, y_pred), 4))
+    print("Precision:", round(precision_score(y_true, y_pred, average='weighted', zero_division=0), 4))
+    print("Recall   :", round(recall_score(y_true, y_pred, average='weighted', zero_division=0), 4))
+    print("F1 Score :", round(f1_score(y_true, y_pred, average='weighted', zero_division=0), 4))
+    print("Confusion Matrix:\n", confusion_matrix(y_true, y_pred))
+    if plot:
+        plot_confusion(name, y_true, y_pred)
+
+print_metrics("Decision Tree", y_test, y_pred_dt)
+print_metrics("Random Forest", y_test, y_pred_rf)
+
 
 

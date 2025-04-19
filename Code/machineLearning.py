@@ -153,6 +153,21 @@ dt_cv_score = cross_val_score(dt, X, y, cv=5).mean()
 print("\nCross-validation Scores:")
 print("Decision Tree CV Accuracy:", round(dt_cv_score, 4))
 
+# ---- Unsupervised Models ----
+print("UNSUPERVISED MODELS (with sampling) ---")
+
+# Sample to speed up
+X_sample = X.sample(n=3000, random_state=42)
+y_sample = y.loc[X_sample.index]
+
+# Agglomerative Clustering
+start = time.time()
+agg = AgglomerativeClustering(n_clusters=2)
+agg_labels = agg.fit_predict(X_sample)
+print_metrics("Agglomerative (sampled)", y_sample, agg_labels)
+print("Agglomerative ARI:", round(adjusted_rand_score(y_sample, agg_labels), 4))
+print("Agglomerative time:", round(time.time() - start, 2), "seconds")
+
 
 
 

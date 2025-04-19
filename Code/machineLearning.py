@@ -1,13 +1,17 @@
-import pandas
+import pandas as pd
+import numpy  as np
 
-import numpy
-from sklearn.preprocessing import LabelEncoder
-from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import LabelEncoder,StandardScaler
 from scipy.stats import zscore
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
-
-
+from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, adjusted_rand_score, confusion_matrix
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.cluster import SpectralClustering, AgglomerativeClustering
+import time
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.decomposition import PCA
 
 dataset = pandas.read_csv("dataset/alb-rainfall-adm2-full.csv")
 
@@ -87,6 +91,31 @@ aggregated_data = dataset.groupby(['adm2_id', 'ADM2_PCODE', 'year_month']).agg({
     'r3q': 'mean'
 }).reset_index()
 
-#     Adding the second phase
+#     Adding the second phase 
+
+# Create target (example): classify days with high rainfall
+dataset['rain_label'] = (dataset['rfh'] > dataset['rfh'].median()).astype(int)
+
+# Check class distribution
+print("\nRain label distribution:")
+print(dataset['rain_label'].value_counts())
+
+# Features and labels (remove rfh because it's used to generate target)
+X = dataset[numerical_columns].copy()
+if 'rfh' in X.columns:
+    X = X.drop(columns=['rfh'])
+y = dataset['rain_label']
+
+# Split for supervised
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42, stratify=y)
+
+# ---- Supervised Models ----
+print("\n--- SUPERVISED MODELS ---")
+
+# Decision Tree with limited depth to avoid overfitting
+dt = DecisionTreeClassifier(max_depth=5, random_state=0)
+dt.fit(X_train, y_train)
+y_pred_dt = dt.predict(X_test)
+
 
 

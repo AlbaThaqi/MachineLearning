@@ -139,19 +139,25 @@ Vizualimi dhe diskutimet e dokumentuara të rezultateve duke krahasuar algoritme
 # Trajnimi i modelit - datasetit
 Fillon me krijimin e një kolonë të re të quajtur rain_label, e cila përdoret si target për modelet klasifikuese.
 
-dataset['rain_label'] = (dataset['rfh'] > dataset['rfh'].median()).astype(int)
+![image](https://github.com/user-attachments/assets/d0e364e3-2e36-45fc-8061-212508b26983)
+
 
 Një pjesë që nuk duhet të injorohet është pjesa nëse dataseti është i balancuar apo i pabalancuar.
 
-print("\nRain label distribution:")
-print(dataset['rain_label'].value_counts())
+![image](https://github.com/user-attachments/assets/ac308931-cc2e-4133-aa81-94124fc7da51)
+
 
 Në rastin tonë dataseti ynë ka kaluar gjitha proceset e fazës së parë me sukses dhe është një dataset i balancuar.
+
 Rain label distribution:
+
 0    282512
+
 1    275578
 
-Pasata krijohet një kopje e të gjitha kolonave numerike në X, e cila përfaqëson veçoritë (features) që do i jepen modelit. 
+![image](https://github.com/user-attachments/assets/7a6689ad-5b8d-4907-a0a5-5c223dcd021d)
+
+Pasi të  krijohet një kopje e të gjitha kolonave numerike në X, e cila përfaqëson veçoritë (features) që do i jepen modelit. 
 Kolona rfh hiqet sepse është përdorur për të krijuar targetin rain_label dhe do të krijonte një "leakage" nëse lihet brenda. 
 Më pas, variabla y vendoset të jetë rain_label, që tregon nëse reshjet në një ditë të caktuar janë të larta apo jo. 
 Në fund, të dhënat ndahen në dy pjesë: X_train dhe X_test për trajnim dhe testim, duke përdorur train_test_split me 70% për trajnim dhe 30% për testim, 
@@ -159,15 +165,41 @@ dhe duke përdorur stratify=y për të ruajtur shpërndarjen e barabartë të kl
 
 # --- Algorimet Supervised  ---
 
- Decision Tree dhe Random Forest janë përdorur si algoritme klasifikimi për shkak të efikasitetit të tyre me të dhëna numerike dhe kapacitetit për të interpretuar rezultatet. 
+ **Decision Tree** dhe **Random Forest** janë përdorur si algoritme klasifikimi për shkak të efikasitetit të tyre me të dhëna numerike dhe kapacitetit për të interpretuar rezultatet. 
  Decision Tree është i lehtë për t’u vizualizuar dhe kuptuar, duke u bazuar në ndarje të thjeshta të të dhënave.
- Random Forest, si një ansambël i shumë pemëve vendimmarrëse, ka avantazhin e performancës më të mirë dhe rezistencës ndaj overfitting.
- Të dy janë të përshtatshëm për dataset-in e reshjeve sepse përballojnë mirë outliers dhe përzierje tiparesh me shkallë të ndryshme.
+
+ Në këtë pjesë të kodit, krijohet një model DecisionTreeClassifier me thellësi maksimale të kufizuar në 5 (max_depth=5) për të shmangur mbingarkimin (overfitting). Kjo pëmë vendimmarrjeje trajnohet mbi të dhënat e trajnimit X_train dhe y_train për të mësuar rregullat që ndajnë ditët me reshje të ulëta dhe të larta në bazë të veçorive meteorologjike
+ 
+ ![image](https://github.com/user-attachments/assets/414444c2-0c8d-4f18-a61d-6c5e6f5a842a)
+
+ Rezultatet në datasetin tonë
+ 
 ![image](https://github.com/user-attachments/assets/ecd6de08-ed2b-4781-9a8e-61a33998b6bf)
-- ![image](https://github.com/user-attachments/assets/e86b17a4-fdbe-44b2-bccc-c148ec8ac70d)
-- ![image](https://github.com/user-attachments/assets/ff6757a3-4e14-4c39-b0a0-d76577fa7de9)
-- ![image](https://github.com/user-attachments/assets/f235e6b6-cbf5-487d-9323-1eeaf7aba0bd)
-- ![image](https://github.com/user-attachments/assets/43ed06fa-518b-44f0-8c4e-5a90136ed137)
+
+ Random Forest ka avantazhin e performancës më të mirë dhe rezistencës ndaj overfitting.
+ Në këtë pjesë trajnohet një model RandomForestClassifier me 100 pemë dhe thellësi maksimale të kufizuar në 5 
+ për të parandaluar overfitting. Ky model kombinon vendimet e shumë pemëve për të arritur një klasifikim më të saktë
+ dhe të qëndrueshëm mbi reshjet, duke u bazuar në veçoritë meteorologjike.
+ 
+![image](https://github.com/user-attachments/assets/9afb82cf-823f-4c51-a9db-d795c0097180)
+
+ Rezultatet në datasetin tonë                       
+![image](https://github.com/user-attachments/assets/e86b17a4-fdbe-44b2-bccc-c148ec8ac70d)
+                      
+ Të dy janë të përshtatshëm për dataset-in e reshjeve sepse përballojnë mirë outliers dhe përzierje tiparesh me shkallë të ndryshme.
+ 
+![image](https://github.com/user-attachments/assets/f358ee28-c133-4611-b272-e02cf5db3154)
+
+Ky bllok kodi përllogarit metrikat kryesore të klasifikimit (accuracy, precision, recall, F1-score) dhe, nëse kërkohet,
+vizaton matricën e konfuzionit për të analizuar rezultatet e parashikimeve. Gjithashtu, përdoret validimi i kryqëzuar 
+me 5 folds për të vlerësuar qëndrueshmërinë e modeleve në të gjithë dataset-in.
+
+![image](https://github.com/user-attachments/assets/ff6757a3-4e14-4c39-b0a0-d76577fa7de9)
+
+# -- Algorimet Unsupervised--
+
+![image](https://github.com/user-attachments/assets/f235e6b6-cbf5-487d-9323-1eeaf7aba0bd)
+![image](https://github.com/user-attachments/assets/43ed06fa-518b-44f0-8c4e-5a90136ed137)
 
 
 

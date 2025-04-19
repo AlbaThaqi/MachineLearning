@@ -169,5 +169,21 @@ print("Agglomerative ARI:", round(adjusted_rand_score(y_sample, agg_labels), 4))
 print("Agglomerative time:", round(time.time() - start, 2), "seconds")
 
 
+# Spectral Clustering
+start = time.time()
+spectral = SpectralClustering(n_clusters=2, assign_labels='kmeans', random_state=0, affinity='nearest_neighbors')
+spectral_labels = spectral.fit_predict(X_sample)
+print_metrics("Spectral Clustering (sampled)", y_sample, spectral_labels)
+print("Spectral Clustering ARI:", round(adjusted_rand_score(y_sample, spectral_labels), 4))
+print("Spectral Clustering time:", round(time.time() - start, 2), "seconds")
+
+# ---- Visualization ----
+print("\n--- VISUALIZATION ---")
+# PCA for 2D Visualization
+pca = PCA(n_components=2)
+X_pca = pca.fit_transform(X_sample)
+
+
+
 
 

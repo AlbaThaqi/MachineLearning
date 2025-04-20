@@ -178,10 +178,63 @@ print("Spectral Clustering ARI:", round(adjusted_rand_score(y_sample, spectral_l
 print("Spectral Clustering time:", round(time.time() - start, 2), "seconds")
 
 # ---- Visualization ----
-print("\n--- VISUALIZATION ---")
-# PCA for 2D Visualization
+metrics = {
+    "Modeli": ["Decision Tree", "Random Forest"],
+    "Saktësia": [accuracy_score(y_test, y_pred_dt), accuracy_score(y_test, y_pred_rf)],
+    "Precision": [precision_score(y_test, y_pred_dt, average='weighted'), precision_score(y_test, y_pred_rf, average='weighted')],
+    "Recall": [recall_score(y_test, y_pred_dt, average='weighted'), recall_score(y_test, y_pred_rf, average='weighted')],
+    "F1-Score": [f1_score(y_test, y_pred_dt, average='weighted'), f1_score(y_test, y_pred_rf, average='weighted')],
+    "CV Accuracy": [dt_cv_score, rf_cv_score]
+}
+
+df_metrics = pd.DataFrame(metrics)
+
+df_plot = df_metrics.set_index("Modeli").T
+
+
+df_plot.plot(kind='bar', figsize=(10, 6), colormap='viridis')
+plt.title("Krahasimi i Performancës së Modeleve Mbikëqyrëse")
+plt.ylabel("Vlera")
+plt.xlabel("Metrika")
+plt.legend(title="Modeli")
+plt.ylim(0, 1.05)
+plt.tight_layout()
+plt.show()
+
+plt.figure(figsize=(12, 5))
+
 pca = PCA(n_components=2)
 X_pca = pca.fit_transform(X_sample)
+
+
+plt.subplot(1, 2, 1)
+sns.scatterplot(x=X_pca[:, 0], y=X_pca[:, 1], hue=agg_labels, palette='Set2', s=40)
+plt.title("Agglomerative Clustering me PCA")
+plt.xlabel("Komponenti PCA 1")
+plt.ylabel("Komponenti PCA 2")
+plt.legend(title="Cluster")
+
+
+plt.subplot(1, 2, 2)
+sns.scatterplot(x=X_pca[:, 0], y=X_pca[:, 1], hue=spectral_labels, palette='Set1', s=40)
+plt.title("Spectral Clustering me PCA")
+plt.xlabel("Komponenti PCA 1")
+plt.ylabel("Komponenti PCA 2")
+plt.legend(title="Cluster")
+
+plt.tight_layout()
+plt.show()
+
+plt.figure(figsize=(6, 6))
+labels = ['Pak reshje', 'Shumë reshje']
+sizes = dataset['rain_label'].value_counts()
+plt.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=90, colors=['skyblue', 'lightgreen'])
+plt.title("Shpërndarja e Etiketave për Reshje")
+plt.axis('equal')
+plt.tight_layout()
+plt.show()
+
+
 
 
 

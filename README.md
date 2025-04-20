@@ -168,7 +168,7 @@ dhe duke përdorur stratify=y për të ruajtur shpërndarjen e barabartë të kl
  **Decision Tree** dhe **Random Forest** janë përdorur si algoritme klasifikimi për shkak të efikasitetit të tyre me të dhëna numerike dhe kapacitetit për të interpretuar rezultatet. 
  Decision Tree është i lehtë për t’u vizualizuar dhe kuptuar, duke u bazuar në ndarje të thjeshta të të dhënave.
 
- Në këtë pjesë të kodit, krijohet një model DecisionTreeClassifier me thellësi maksimale të kufizuar në 5 (max_depth=5) për të shmangur mbingarkimin (overfitting). Kjo pëmë vendimmarrjeje trajnohet mbi të dhënat e trajnimit X_train dhe y_train për të mësuar rregullat që ndajnë ditët me reshje të ulëta dhe të larta në bazë të veçorive meteorologjike.
+ Në këtë pjesë të kodit, krijohet një model DecisionTreeClassifier me thellësi maksimale të kufizuar në 5 (max_depth=5) për të shmangur mbingarkimin (overfitting). Kjo pemë vendimmarrjeje trajnohet mbi të dhënat e trajnimit X_train dhe y_train për të mësuar rregullat që ndajnë ditët me reshje të ulëta dhe të larta në bazë të veçorive meteorologjike.
  
  ![image](https://github.com/user-attachments/assets/414444c2-0c8d-4f18-a61d-6c5e6f5a842a)
 

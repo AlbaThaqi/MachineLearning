@@ -226,6 +226,26 @@ Rezultatet në datasetin tonë:
 
 # Vizualizimi 
 
+## 1. Shpërndarja e Etiketave për Reshje
+Ky grafik tregon shpërndarjen e të dhënave në dy klasa: "Pak reshje" dhe "Shumë reshje". Siç shihet, të dhënat janë të balancuara pothuajse në mënyrë të barabartë: rreth 50.6% për “Pak reshje” dhe 49.4% për “Shumë reshje”. Ky lloj shpërndarjeje është shumë i favorshëm për trajnimin e modeleve mbikëqyrëse, pasi redukton rrezikun e paragjykimit të modelit ndaj njërës klasë.
+![image](https://github.com/user-attachments/assets/33873f41-4efb-483b-b53c-ea145bd06e79)
+
+## 2. Krahësimi i Performancës së Modeleve Mbikëqyrëse
+Në këtë grafik shtyllor janë paraqitur metrikat e performancës për dy modele klasifikimi: Decision Tree dhe Random Forest. Për secilin model janë krahasuar metrikat:
+- Saktësia (Accuracy)
+- Precision
+- Recall
+- F1-Score
+- CV Accuracy (saktësia mesatare në validimin me kryqëzim)
+- Rezultatet tregojnë se të dy modelet kanë performancë shumë të ngjashme, me vlera shumë të larta në të gjitha metrikat, çka sugjeron se të dy modelet janë të aftë të bëjnë parashikime të sakta mbi të dhënat e reshjeve.
+![image](https://github.com/user-attachments/assets/5ce4589d-a2a4-4fc7-91f6-523ace3f449d)
+
+## 3. Agglomerative Clustering me PCA dhe Spectral Clustering me PCA
+Ky grafik përfaqëson rezultatet e grupimit të të dhënave duke përdorur algoritmin Agglomerative Clustering, dhe është vizualizuar pas reduktimit të dimensioneve me PCA (Principal Component Analysis) në dy komponentë kryesorë. Çdo pikë përfaqëson një shembull nga të dhënat, dhe ngjyra e saj i korrespondon një grupi (cluster). Shihen dy grupe të dallueshme, që tregon se të dhënat kanë një ndarje të natyrshme sipas karakteristikave të tyre.
+Ngjashëm me grafikën e mëparshëm, ky vizualizim tregon rezultatet e Spectral Clustering të aplikuar mbi të njëjtat të dhëna dhe të reduktuara me PCA. Edhe këtu, të dhënat ndahen në dy grupe të dallueshme, me një ndarje më të theksuar sesa në Agglomerative Clustering. Kjo tregon se Spectral Clustering ka kapur më mirë strukturën e brendshme të të dhënave.
+![image](https://github.com/user-attachments/assets/69232b16-07ad-473f-ab80-2405eb71fc86)
+
+
 
 
 

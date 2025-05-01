@@ -235,7 +235,7 @@ plt.axis('equal')
 plt.tight_layout()
 plt.show()
 
-
+#Adding the third phase
 
 
 

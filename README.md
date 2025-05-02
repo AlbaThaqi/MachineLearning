@@ -246,10 +246,7 @@ Ngjashëm me grafikën e mëparshëm, ky vizualizim tregon rezultatet e Spectral
 ![image](https://github.com/user-attachments/assets/69232b16-07ad-473f-ab80-2405eb71fc86)
 
 
-
-
-
-
+# Faza e tretë
 
    
    

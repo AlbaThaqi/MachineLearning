@@ -237,6 +237,8 @@ plt.show()
 
 #Adding the third phase
 
+#Analiza dhe evaluimi
+
 
 
 

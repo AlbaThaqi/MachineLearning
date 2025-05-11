@@ -12,6 +12,7 @@ import time
 import seaborn as sns
 import matplotlib.pyplot as plt
 from sklearn.decomposition import PCA
+from sklearn.model_selection import GridSearchCV
 
 dataset = pandas.read_csv("dataset/alb-rainfall-adm2-full.csv")
 
@@ -239,7 +240,18 @@ plt.show()
 
 #Analiza dhe evaluimi
 
+param_grid = {
+    'max_depth': [3, 5, 10, None],
+    'min_samples_split': [2, 10, 20],
+    'min_samples_leaf': [1, 2, 5],
+    'criterion': ['gini', 'entropy']
+}
 
+grid_search = GridSearchCV(DecisionTreeClassifier(random_state=0), param_grid, cv=5)
+grid_search.fit(X_train, y_train)
+
+print("Best parameters found: ", grid_search.best_params_)
+print("Best cross-validation score: {:.2f}".format(grid_search.best_score_))
 
 
 

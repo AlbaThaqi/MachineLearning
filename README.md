@@ -249,6 +249,19 @@ Ngjashëm me grafikën e mëparshëm, ky vizualizim tregon rezultatet e Spectral
 # Faza e tretë
 Ritrajnimi i datasetit
 Analiza dhe evaluimi (ri-trajnimi) dhe aplikimi i veglave të ML
+Faza II: Analiza dhe evaluimi (ritrajnimi)
+▪ Përgjatë kësaj faze duhet të keni të paraqitura të gjitha detajet që keni aplikuar, rezultatet
+që keni fituar, jo vetëm të vendosen copy-paste por të përcjellën me sqarime e diskutime të
+detajuara. Kjo duke argumentuar dhe arsyetuar pse keni vendos të aplikoni/ përdorni atë
+formë të teknikave dhe rezultatet që keni fituar duke i diskutuar;
+▪ Gjithashtu, edhe për fazën e fundit:
+Faza III:
+▪ Duhet të ndjekin hapat sikur për fazën e dytë të përshkruar, përmirësimet që janë arrit të
+bëhen, pra të paraqitet kontributi juaj në këtë projekt që të tjerët nuk kanë dhënë më parë,
+krahasim i rezultateve të kësaj faze me ato paraprake, diskutime në lidhje me rezultatet e
+fituara dhe nxjerrjen e konkluzioneve në lidhje me rezultatet tuaja. Çka keni arrit të
+paraqitni pas aplikimit të këtyre fazave dhe si mund të i lexojmë këto rezultate, kujt i
+ndihmojnë, si i ndihmojnë dhe çka mund të bëhet në të ardhmen, pas punës tuaj;
 
 
 

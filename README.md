@@ -247,8 +247,8 @@ Ngjashëm me grafikën e mëparshëm, ky vizualizim tregon rezultatet e Spectral
 
 
 # Faza e tretë
+Ritrajnimi i datasetit
 Analiza dhe evaluimi (ri-trajnimi) dhe aplikimi i veglave të ML
-kerkesat
 
 
 

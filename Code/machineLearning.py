@@ -270,7 +270,33 @@ best_rf_pred = best_rf.predict(X_test)
 print_metrics("Random Forest (Optimized)", y_test, best_rf_pred, plot=True)
 
 
+columns_to_log = ["r1h", "r3h", "r1q", "r3q"]
+dataset[columns_to_log] = dataset[columns_to_log].apply(lambda x: np.log1p(x))
 
+dataset[numerical_columns] = scaler.fit_transform(dataset[numerical_columns])
+
+dataset['rain_label'] = (dataset['rfh'] > dataset['rfh'].median()).astype(int)
+X = dataset[numerical_columns].drop(columns=['rfh'])
+y = dataset['rain_label']
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, stratify=y, random_state=42)
+
+models = ["Original RF", "Optimized RF"]
+accuracies = [accuracy_score(y_test, y_pred_rf), accuracy_score(y_test, best_rf_pred)]
+f1_scores = [f1_score(y_test, y_pred_rf, average='weighted'), f1_score(y_test, best_rf_pred, average='weighted')]
+
+compare_df = pd.DataFrame({
+    "Model": models,
+    "Accuracy": accuracies,
+    "F1 Score": f1_scores
+})
+
+compare_df.set_index("Model").plot(kind='bar', figsize=(8, 5), colormap='Set3')
+plt.title("Krahasim i Modeleve: RF Origjinal vs RF Optimized")
+plt.ylabel("Rezultati")
+plt.ylim(0, 1)
+plt.tight_layout()
+plt.show()
 
 
 

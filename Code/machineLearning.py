@@ -253,6 +253,22 @@ grid_search.fit(X_train, y_train)
 print("Best parameters found: ", grid_search.best_params_)
 print("Best cross-validation score: {:.2f}".format(grid_search.best_score_))
 
+rf_param_grid = {
+    'n_estimators': [50, 100, 200],
+    'max_depth': [5, 10, None],
+    'min_samples_split': [2, 5, 10]
+}
+
+rf_grid = GridSearchCV(RandomForestClassifier(random_state=0), rf_param_grid, cv=5)
+rf_grid.fit(X_train, y_train)
+
+print("\n[Random Forest] Best Params:", rf_grid.best_params_)
+print("Best CV Score RF:", round(rf_grid.best_score_, 4))
+
+best_rf = rf_grid.best_estimator_
+best_rf_pred = best_rf.predict(X_test)
+print_metrics("Random Forest (Optimized)", y_test, best_rf_pred, plot=True)
+
 
 
 

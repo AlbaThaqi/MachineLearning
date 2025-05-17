@@ -14,6 +14,39 @@ import matplotlib.pyplot as plt
 from sklearn.decomposition import PCA
 from sklearn.model_selection import GridSearchCV
 
+# Optional imports wrapped in try-except
+if ENABLE_PROFILING:
+    try:
+        from ydata_profiling import ProfileReport
+    except ImportError:
+        ENABLE_PROFILING = False
+
+if ENABLE_SWEETVIZ:
+    try:
+        import sweetviz as sv
+    except ImportError:
+        ENABLE_SWEETVIZ = False
+
+if ENABLE_MLFLOW:
+    try:
+        import mlflow
+    except ImportError:
+        ENABLE_MLFLOW = False
+
+if ENABLE_WANDB:
+    try:
+        import wandb
+    except ImportError:
+        ENABLE_WANDB = False
+
+if ENABLE_SAVE_MODEL:
+    try:
+        from joblib import dump
+    except ImportError:
+        ENABLE_SAVE_MODEL = False
+
+warnings.filterwarnings("ignore")
+
 dataset = pandas.read_csv("dataset/alb-rainfall-adm2-full.csv")
 
 # print(dataset.head())
@@ -91,6 +124,16 @@ aggregated_data = dataset.groupby(['adm2_id', 'ADM2_PCODE', 'year_month']).agg({
     'r1q': 'mean',
     'r3q': 'mean'
 }).reset_index()
+# === Optional Tool: YData Profiling ===
+if ENABLE_PROFILING:
+    profile = ProfileReport(dataset, title="Rainfall Profiling Report", explorative=True)
+    profile.to_file("/mnt/data/rainfall_report.html")
+
+# === Optional Tool: Sweetviz ===
+if ENABLE_SWEETVIZ:
+    report = sv.compare([X_train, "Train"], [X_test, "Test"])
+    report.show_html(filepath="/mnt/data/sweetviz_report.html")
+
 
 #     Adding the second phase 
 
@@ -153,6 +196,36 @@ rf_cv_score = cross_val_score(rf, X, y, cv=5).mean()
 dt_cv_score = cross_val_score(dt, X, y, cv=5).mean()
 print("\nCross-validation Scores:")
 print("Decision Tree CV Accuracy:", round(dt_cv_score, 4))
+
+# === Optional Tool: MLflow ===
+if ENABLE_MLFLOW:
+    with mlflow.start_run():
+        mlflow.log_param("max_depth", 5)
+        mlflow.log_param("n_estimators", 100)
+        mlflow.log_metric("accuracy", accuracy_score(y_test, y_pred_rf))
+        mlflow.sklearn.log_model(rf, "random_forest_model")
+
+# === Optional Tool: Weights & Biases ===
+if ENABLE_WANDB:
+    wandb.init(project="rainfall-ml", name="RandomForest", reinit=True)
+    wandb.config.update({"max_depth": 5, "n_estimators": 100})
+    wandb.log({"accuracy": accuracy_score(y_test, y_pred_rf)})
+
+# === Grid Search for Optimization ===
+rf_grid = GridSearchCV(
+    RandomForestClassifier(random_state=0),
+    {'n_estimators': [50, 100], 'max_depth': [5, 10], 'min_samples_split': [2, 5]},
+    cv=5
+)
+rf_grid.fit(X_train, y_train)
+best_rf = rf_grid.best_estimator_
+best_rf_pred = best_rf.predict(X_test)
+print_metrics("Optimized Random Forest", y_test, best_rf_pred)
+
+# === Optional Tool: Save model ===
+if ENABLE_SAVE_MODEL:
+    dump(best_rf, "/mnt/data/best_rf_model.joblib")
+    
 
 # ---- Unsupervised Models ----
 print("UNSUPERVISED MODELS (with sampling) ---")

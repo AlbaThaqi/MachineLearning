@@ -247,7 +247,7 @@ Ngjashëm me grafikën e mëparshëm, ky vizualizim tregon rezultatet e Spectral
 
 
 # Faza e tretë
-Ritrajnimi i datasetit
+ Faza e trete - Ritrajnimi i datasetit
 Analiza dhe evaluimi (ri-trajnimi) dhe aplikimi i veglave të ML
 Faza II: Analiza dhe evaluimi (ritrajnimi)
 ▪ Përgjatë kësaj faze duhet të keni të paraqitura të gjitha detajet që keni aplikuar, rezultatet

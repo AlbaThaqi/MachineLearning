@@ -247,14 +247,70 @@ Ngjashëm me grafikën e mëparshëm, ky vizualizim tregon rezultatet e Spectral
 
 
 # Faza e tretë
- Faza e trete - Ritrajnimi i datasetit
-Analiza dhe evaluimi (ri-trajnimi) dhe aplikimi i veglave të ML
-Faza II: Analiza dhe evaluimi (ritrajnimi)
-▪ Përgjatë kësaj faze duhet të keni të paraqitura të gjitha detajet që keni aplikuar, rezultatet
-që keni fituar, jo vetëm të vendosen copy-paste por të përcjellën me sqarime e diskutime të
-detajuara. Kjo duke argumentuar dhe arsyetuar pse keni vendos të aplikoni/ përdorni atë
-formë të teknikave dhe rezultatet që keni fituar duke i diskutuar;
-▪ Gjithashtu, edhe për fazën e fundit:
+Ritrajnimi i datasetit dhe përdorimi i veglave të ML
+Pas përpunimit fillestar dhe analizës eksploruese të të dhënave klimatike të reshjeve, është ndërmarrë faza e ritrajnimit me qëllim përmirësimin e performancës së modeleve të Machine Learning. Kjo fazë përfshinte aplikimin e teknikave të avancuara si optimizimi i hiperparametrave përmes GridSearchCV, përdorimi i transformimeve logaritmike për trajtimin e shpërndarjeve jo normale dhe normalizimi i plotë i veçorive numerike për të ruajtur qëndrueshmërinë në trajnim.
+Kodi i përshtatet fazës së dytë me disa përmisime të rezultateve.
+
+**Optimizimi i Decision Tree me GridSearchCV** - mundohet ti eksploroj kombinime të ndryshme të hiperparametrave për DecisionTreeClassifier.
+
+**max_depth:** thellësia maksimale e pemës.
+
+**min_samples_split:** numri minimal i shembujve që kërkohen për të bërë ndarjen e një nyje.
+
+**min_samples_leaf:** numri minimal i shembujve në një degë fundore.
+
+**criterion:** funksioni i matjes së ndarjes (gini ose entropy).
+
+
+![image](https://github.com/user-attachments/assets/42887f5d-bce2-4600-856f-10e08bf31ce6)
+
+GridSearchCV për të testuar përdor çdo kombinim në param_grid me validim të kryqëzuar 5-fish (cv=5).
+
+![image](https://github.com/user-attachments/assets/e67b1e12-7d3f-4779-9439-e02769d89a4d)
+
+**Optimizimi i Random Forest me GridSearchCV**
+
+Parametra që eksplorohen për Random Forest:
+
+**n_estimators:** numri i pemëve në pyll.
+
+**max_depth:** thellësia maksimale për secilën pemë.
+
+**min_samples_split:** numri minimal i shembujve që kërkohen për të bërë ndarjen e një nyje.
+
+Trajnon modele me të gjitha kombinimet dhe i teston me cv=5.
+
+![image](https://github.com/user-attachments/assets/f40fe7a7-7546-41d7-a831-a6c7d5985694)
+
+Rreshti i parë merr modelin më të mirë të trajnuar nga GridSearchCV, modelin RandomForestClassifier me kombinimin më të mirë të parametrave (n_estimators, max_depth, min_samples_split, etj.),të cilin GridSearchCV e ka testuar përmes validimit të kryqëzuar (cv=5) dhe e ka zgjedhur në bazë të performancës.
+
+Tek rreshti i dytë -ky model i optimizuar (best_rf) përdoret për të parashikuar klasat (rain_label) për setin e testimit (X_test).Rezultati është një listë me vlera 0 ose 1 (reshje të ulëta apo të larta).
+
+Ndërsa tek rreshti tretë - llogarit Accuracy, Precision, Recall,F1 Score dhe shfaq Confusion Matrix.
+
+![image](https://github.com/user-attachments/assets/23ea0807-4a9f-432d-9742-8d27c7fe370f)
+
+Përcakton një listë me kolona që kanë vlera shumë të ndryshme në madhësi (d.m.th. shpërndarje jo-normale, outliers të mëdhenj).
+
+np.log1p(x) llogarit logaritmin natyror të (1 + x) për secilën vlerë në kolonë.
+Ul efektin e outliers që do ndikonin shumë algoritmin (sidomos Decision Tree dhe Random Forest).
+
+Ndërsa pjesa tjetër Merr të gjitha kolonat numerike (ato të përzgjedhura më parë me numerical_columns).
+I kalon nëpër StandardScaler i normalizon duke i kthyer në shpërndarje me mesatare = 0 dhe devijim standard = 1.
+
+Eliminon ndikimin e kolonave që kanë vlera më të mëdha vetëm për shkak të njësive të matje
+![image](https://github.com/user-attachments/assets/2851d2c7-2ef2-4d3a-8b9e-f33c62d0d8e3)
+
+Për të ndërtuar variablën target për klasifikim binar, u krijua kolona rain_label, ku vlerat e reshjeve orare (rfh) u klasifikuan si 1 nëse ishin mbi medianën dhe 0 ndryshe. Më pas, rfh u përjashtua nga veçoritë hyrëse për të shmangur ndikimin direkt në model. Dataseti u nda në grupe trajnimi dhe testimi në raport 70:30, duke përdorur stratifikim për të ruajtur balancën mes klasave në të dy ndarjet.
+
+![image](https://github.com/user-attachments/assets/915ca14c-b484-40c3-a00d-19fe06c63153)
+
+Për të vlerësuar performancën e modelit bazë dhe atij të optimizuar, u ndërtua një strukturë krahasuese përmes një DataFrame. 
+Për secilin model, u llogaritën metrikat kryesore si saktësia (accuracy) dhe F1 score duke përdorur të dhënat e testimit. Këto metrika u ruajtën në formë liste dhe më pas u përfshinë në një tabelë krahasuese (compare_df), që shërben si bazë për analizimin e përmirësimeve pas ritrajnimit dhe për vizualizimin e tyre.
+
+![image](https://github.com/user-attachments/assets/dad9577e-e7a0-4527-a80b-6e69123434dd)
+
+
 Faza III:
 ▪ Duhet të ndjekin hapat sikur për fazën e dytë të përshkruar, përmirësimet që janë arrit të
 bëhen, pra të paraqitet kontributi juaj në këtë projekt që të tjerët nuk kanë dhënë më parë,

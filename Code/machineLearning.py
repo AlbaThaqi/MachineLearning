@@ -1,18 +1,27 @@
+import os
+os.environ["WANDB_MODE"] = "disabled"
+import warnings
+warnings.filterwarnings("ignore")
 import pandas as pd
-import numpy  as np
-
-from sklearn.preprocessing import LabelEncoder,StandardScaler
-from scipy.stats import zscore
-from sklearn.model_selection import train_test_split, cross_val_score
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, adjusted_rand_score, confusion_matrix
-from sklearn.tree import DecisionTreeClassifier
+import numpy as np
+from sklearn.preprocessing import LabelEncoder, StandardScaler
+from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.cluster import SpectralClustering, AgglomerativeClustering
-import time
-import seaborn as sns
-import matplotlib.pyplot as plt
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
+from sklearn.cluster import AgglomerativeClustering, SpectralClustering
 from sklearn.decomposition import PCA
-from sklearn.model_selection import GridSearchCV
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.metrics import adjusted_rand_score
+
+if not hasattr(np, "VisibleDeprecationWarning"):
+    class VisibleDeprecationWarning(Warning):
+        pass
+    np.VisibleDeprecationWarning = VisibleDeprecationWarning
+
+import sweetviz as sv
+import wandb
 
 # Optional imports wrapped in try-except
 if ENABLE_PROFILING:

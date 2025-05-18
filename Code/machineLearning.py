@@ -23,62 +23,159 @@ if not hasattr(np, "VisibleDeprecationWarning"):
 import sweetviz as sv
 import wandb
 
-# Optional imports wrapped in try-except
-if ENABLE_PROFILING:
-    try:
-        from ydata_profiling import ProfileReport
-    except ImportError:
-        ENABLE_PROFILING = False
+from sklearn.preprocessing import LabelEncoder, StandardScaler
+from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
+from sklearn.cluster import AgglomerativeClustering, SpectralClustering
+from sklearn.decomposition import PCA
 
-if ENABLE_SWEETVIZ:
-    try:
-        import sweetviz as sv
-    except ImportError:
-        ENABLE_SWEETVIZ = False
+import matplotlib.pyplot as plt
+import seaborn as sns
 
-if ENABLE_MLFLOW:
-    try:
-        import mlflow
-    except ImportError:
-        ENABLE_MLFLOW = False
+from sklearn.metrics import adjusted_rand_score
 
-if ENABLE_WANDB:
-    try:
-        import wandb
-    except ImportError:
-        ENABLE_WANDB = False
+import sweetviz as sv
 
-if ENABLE_SAVE_MODEL:
-    try:
-        from joblib import dump
-    except ImportError:
-        ENABLE_SAVE_MODEL = False
+# Optional imports
+try:
+    from ydata_profiling import ProfileReport
+    ENABLE_PROFILING = True
+except ImportError:
+    ENABLE_PROFILING = False
 
-warnings.filterwarnings("ignore")
+try:
+    import mlflow
+    import mlflow.sklearn
+    ENABLE_MLFLOW = True
+except ImportError:
+    ENABLE_MLFLOW = False
 
-dataset = pandas.read_csv("dataset/alb-rainfall-adm2-full.csv")
+try:
+    import wandb
+    ENABLE_WANDB = True
+except ImportError:
+    ENABLE_WANDB = False
 
-# print(dataset.head())
+try:
+    from joblib import dump
+    ENABLE_SAVE_MODEL = True
+except ImportError:
+    ENABLE_SAVE_MODEL = False
 
-print(dataset.isnull().sum());
 
-# print(dataset.info())
+# Load dataset
+dataset = pd.read_csv("C:/Users/lenovo/Documents/GitHub/MachineLearning/dataset/alb-rainfall-adm2-full.csv")
 
-categorical_columns = [column for column in dataset.columns if dataset[column].dtype=='object']
-# # print("Categorical columns: ",categorical_columns)
+# Remove header row if accidentally included as data
+if dataset.iloc[0].astype(str).str.contains("#").any():
+    dataset = dataset.drop(index=0).reset_index(drop=True)
 
-numerical_columns = [column for column in dataset.columns if dataset[column].dtype!=object]
-# # print("Numerical columns: ",numerical_columns)
+# Replace known missing value indicators with NaN
+dataset.replace({'?': np.nan, 'missing': np.nan, 'N/A': np.nan}, inplace=True)
 
-# print("Unique values: ",dataset[categorical_columns].nunique)
-
+# Convert numeric columns and fill missing with median
 numerical_columns = ["n_pixels", "rfh", "rfh_avg", "r1h", "r1h_avg", "r3h", "r3h_avg", "rfq", "r1q", "r3q"]
-for column in numerical_columns:
-    dataset[column] = pandas.to_numeric(dataset[column],errors='coerce')
+dataset[numerical_columns] = dataset[numerical_columns].apply(pd.to_numeric, errors='coerce')
+dataset[numerical_columns] = dataset[numerical_columns].fillna(dataset[numerical_columns].median())
 
-# print(dataset.dtypes)
-# for column in numerical_columns:
-#     print(f"Unique values in {column}: ", dataset[column].unique())
+# Convert date and drop invalid dates
+dataset['date'] = pd.to_datetime(dataset['date'], errors='coerce')
+dataset.dropna(subset=['date'], inplace=True)
+
+# One-hot encode 'version' column
+dataset = pd.get_dummies(dataset, columns=['version'], drop_first=True)
+
+# Label encode 'ADM2_PCODE'
+dataset['ADM2_PCODE'] = LabelEncoder().fit_transform(dataset['ADM2_PCODE'])
+
+# Clip numeric outliers between 1st and 99th percentile
+for col in numerical_columns:
+    low, high = dataset[col].quantile(0.01), dataset[col].quantile(0.99)
+    dataset[col] = dataset[col].clip(lower=low, upper=high)
+
+# Log transform skewed columns
+log_columns = ["r1h", "r3h", "r1q", "r3q"]
+dataset[log_columns] = dataset[log_columns].apply(lambda x: np.log1p(x))
+
+# Scale numerical features
+scaler = StandardScaler()
+dataset[numerical_columns] = scaler.fit_transform(dataset[numerical_columns])
+
+# Create binary rain label based on median of 'rfh'
+dataset['rain_label'] = (dataset['rfh'] > dataset['rfh'].median()).astype(int)
+
+# Prepare features and target
+X = dataset[numerical_columns].copy().drop(columns=['rfh'])
+y = dataset['rain_label']
+
+# Split data with stratification to keep class balance
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, stratify=y, test_size=0.3, random_state=42
+)
+
+# === Profiling Reports ===
+if ENABLE_PROFILING:
+    profile = ProfileReport(dataset, title="Rainfall Profiling Report", explorative=True)
+    profile.to_file("rainfall_report.html")
+    print("Saved ydata_profiling report as rainfall_report.html")
+
+report = sv.compare([X_train, "Train"], [X_test, "Test"])
+report.show_html(filepath="sweetviz_report.html")
+print("Saved Sweetviz report as sweetviz_report.html")
+
+# === Modeling ===
+rf = RandomForestClassifier(max_depth=5, n_estimators=100, random_state=0)
+rf.fit(X_train, y_train)
+y_pred_rf = rf.predict(X_test)
+
+dt = DecisionTreeClassifier(max_depth=5, random_state=0)
+dt.fit(X_train, y_train)
+y_pred_dt = dt.predict(X_test)
+
+def print_metrics(name, y_true, y_pred):
+    print(f"\n{name} Results:")
+    print("Accuracy :", round(accuracy_score(y_true, y_pred), 4))
+    print("Precision:", round(precision_score(y_true, y_pred, average='weighted'), 4))
+    print("Recall   :", round(recall_score(y_true, y_pred, average='weighted'), 4))
+    print("F1 Score :", round(f1_score(y_true, y_pred, average='weighted'), 4))
+    print("Confusion Matrix:\n", confusion_matrix(y_true, y_pred))
+
+print_metrics("Decision Tree", y_test, y_pred_dt)
+print_metrics("Random Forest", y_test, y_pred_rf)
+
+# === MLflow logging ===
+if ENABLE_MLFLOW:
+     with mlflow.start_run():
+        mlflow.log_param("max_depth", 5)
+        mlflow.log_param("n_estimators", 100)
+        mlflow.log_metric("accuracy", accuracy_score(y_test, y_pred_rf))
+        # Pass a small input example for model signature inference
+        input_example = X_train.iloc[:5]  # pick first 5 rows as example input
+        mlflow.sklearn.log_model(rf, "random_forest_model", input_example=input_example)
+# === wandb logging ===
+if ENABLE_WANDB:
+    wandb.init(project="rainfall-ml", name="RandomForest", reinit=True)
+    wandb.config.update({"max_depth": 5, "n_estimators": 100})
+    wandb.log({"accuracy": accuracy_score(y_test, y_pred_rf)})
+    wandb.finish()
+
+# === Grid Search for Random Forest ===
+rf_grid = GridSearchCV(
+    RandomForestClassifier(random_state=0),
+    {'n_estimators': [50, 100], 'max_depth': [5, 10], 'min_samples_split': [2, 5]},
+    cv=5,
+    n_jobs=-1
+)
+rf_grid.fit(X_train, y_train)
+best_rf = rf_grid.best_estimator_
+best_rf_pred = best_rf.predict(X_test)
+print_metrics("Optimized Random Forest", y_test, best_rf_pred)
+
+##vazhdo prej ktu
+
+
 
 dataset.replace({'?': None, 'missing': None, 'N/A': None}, inplace=True)
 

@@ -213,8 +213,6 @@ Rezultatet në datasetin tonë:
  
 ![image](https://github.com/user-attachments/assets/f235e6b6-cbf5-487d-9323-1eeaf7aba0bd)
 
-
-
 Spectral Clustering për të grupuar të dhënat në dy klasë bazuar në afërsinë midis pikave, duke përdorur grafin e fqinjësisë më të afërt (affinity='nearest_neighbors'). Algoritmi përpunon një mostër të të dhënave (X_sample), llogarit etiketat e klasave përmes fit_predict, dhe më pas vlerëson performancën përmes metrikave si accuracy, precision, recall, F1-score dhe ARI (Adjusted Rand Index), së bashku me kohën totale të përpunimit.
  
 ![image](https://github.com/user-attachments/assets/57c1fa70-637a-4150-9398-55c6b07897e4)
@@ -248,7 +246,8 @@ Ngjashëm me grafikën e mëparshëm, ky vizualizim tregon rezultatet e Spectral
 
 # Faza e tretë
 Ritrajnimi i datasetit dhe përdorimi i veglave të ML
-Pas përpunimit fillestar dhe analizës eksploruese të të dhënave klimatike të reshjeve, është ndërmarrë faza e ritrajnimit me qëllim përmirësimin e performancës së modeleve të Machine Learning. Kjo fazë përfshinte aplikimin e teknikave të avancuara si optimizimi i hiperparametrave përmes GridSearchCV, përdorimi i transformimeve logaritmike për trajtimin e shpërndarjeve jo normale dhe normalizimi i plotë i veçorive numerike për të ruajtur qëndrueshmërinë në trajnim.
+Pas përpunimit fillestar dhe analizës eksploruese të të dhënave klimatike të reshjeve, është ndërmarrë faza e ritrajnimit me qëllim përmirësimin e performancës së modeleve të Machine Learning. 
+Kjo fazë përfshinte aplikimin e teknikave të avancuara si optimizimi i hiperparametrave përmes GridSearchCV, përdorimi i transformimeve logaritmike për trajtimin e shpërndarjeve jo normale dhe normalizimi i plotë i veçorive numerike për të ruajtur qëndrueshmërinë në trajnim.
 Kodi i përshtatet fazës së dytë me disa përmisime të rezultateve.
 
 **Optimizimi i Decision Tree me GridSearchCV** - mundohet ti eksploroj kombinime të ndryshme të hiperparametrave për DecisionTreeClassifier.
@@ -315,20 +314,25 @@ Për secilin model, u llogaritën metrikat kryesore si saktësia (accuracy) dhe 
 Në rastin tonë kemi përdoru 5 vegla: ydata_profiling, sweetviz, mlflow, wandb dhe joblib.
 
 **YDATA_PROFILING** 
+
 Një vegël për analizë eksploruese të të dhënave (EDA) që gjeneron automatikisht një raport të plotë mbi dataset-in. Përdoret për të kuptuar shpërndarjen e kolonave, mungesat, outliers, korelacionet dhe strukturën e përgjithshme të të dhënave pa shkruar kod analizues manual.Gjeneron një raport interaktiv në format HTML dhe ruhen në rainfall_report.html.
 
 **SWEETVIZ**
+
 Një vegël për krahasim të veçorive ndërmjet dy seteve të të dhënave – zakonisht train dhe test.
 Shërben për të kontrolluar nëse ndarja e të dhënave ka ndikuar në strukturën e tyre dhe për të analizuar se si shpërndahen veçoritë krahasuar me targetin.HTML raport me grafikë dhe analiza automatike ruhen në sweetviz_report.html.
 
 **MLFLOW**
+
 Platformë për menaxhimin e ciklit jetësor të eksperimenteve të Machine Learning.
 Regjistron parametrat, metrikat, dhe vetë modelin gjatë çdo eksperimenti. Lejon krahasim ndërmjet konfigurimeve të ndryshme dhe gjeneron një dashboard lokal. Të dhëna për parametrat dhe metrikat e modelit në sistemin Web UI lokal, dhe një strukturë dosjeje .mlruns/ për ruajtje të brendshme ku shfaqet me komandën mlflow ui në http://localhost:5000.
 
 **WANDB**
+
 Një platformë cloud për ndjekjen dhe vizualizimin e eksperimenteve të ML në kohë reale.Vizualizon grafikët e performancës (accuracy, loss, F1, etj), ruan historikun e konfigurimeve, dhe mbështet punën në ekip ku shfaqet në faqen wandb.ai, në projektin e konfiguruar nga përdoruesi.
 
 **JOBLIB**
+
 Librari për ruajtjen dhe ngarkimin e objekteve Python, zakonisht përdoret për të ruajtur modele të trajnuara. Lejon që një model i trajnuar të ruhet si skedar binar dhe të rishfrytëzohet më vonë pa e ritrajnuar ku ruhen në best_rf_model.joblib.
 
 ## Gjenerimi i file-s
@@ -354,6 +358,7 @@ Vizualizimi i vlerave null nëpër secilën kolonë para trajnimit të datasetit
 ![image](https://github.com/user-attachments/assets/b4f0c8c0-84d2-4c78-b0b1-3045a0020219)
 
 ## Rezultatet 
+
 Pas ritrajnimit të dataset-it duke përdorur teknika si transformimi logaritmik, normalizimi i veçorive dhe optimizimi i hiperparametrave përmes GridSearchCV, u vu re një përmirësim i ndjeshëm në performancën e modelit Random Forest. Saktësia dhe F1-score e modelit të optimizuar u rritën krahasuar me versionin fillestar, duke treguar se përgatitja e kujdesshme e të dhënave dhe përzgjedhja e parametrave adekuatë ndikon drejtpërdrejt në efikasitetin e parashikimeve.
 
 ![WhatsApp Image 2025-05-18 at 13 44 14_d89bfe05](https://github.com/user-attachments/assets/e8fbfad4-fdc4-4004-83dc-9fbb81682180)

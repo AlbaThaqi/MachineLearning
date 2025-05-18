@@ -371,6 +371,10 @@ Matrica e korrelacionit tregon marrëdhënien ndërmjet karakteristikave të dat
 Vizualizimi i vlerave null nëpër secilën kolonë para trajnimit të datasetit
 
 ![image](https://github.com/user-attachments/assets/b4f0c8c0-84d2-4c78-b0b1-3045a0020219)
+Analiza e Ndërveprimeve - Ndërveprimet midis variablave në dataset-in e reshjeve. Ndryshimet në reshje janë të dukshme sipas rajoneve (ADM2_PCODE). Ndërveprimet sugjerojnë që modelet e parashikimit duhet të marrin parasysh vendndodhjen gjeografike dhe kohën e vitit.
+![image](https://github.com/user-attachments/assets/44f6c12e-5bb3-4023-8e08-4799df7934f2)  
+
+
 
 ## Rezultatet 
 

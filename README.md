@@ -309,6 +309,15 @@ Për të vlerësuar performancën e modelit bazë dhe atij të optimizuar, u nd�
 Për secilin model, u llogaritën metrikat kryesore si saktësia (accuracy) dhe F1 score duke përdorur të dhënat e testimit. Këto metrika u ruajtën në formë liste dhe më pas u përfshinë në një tabelë krahasuese (compare_df), që shërben si bazë për analizimin e përmirësimeve pas ritrajnimit dhe për vizualizimin e tyre.
 
 ![image](https://github.com/user-attachments/assets/dad9577e-e7a0-4527-a80b-6e69123434dd)
+## Gjenerimi i file-s
+Për të përmbledhur më mirë punën e kryer gjatë këtij projekti, janë gjeneruar dy file-s, që paraqesin një përshkrim të punës, duke filluar nga dataset-i, karakteristikat e dataset-it dhe deri te rezultatet.
+Figura e mëposhtme shfaq një përshkrim të përgjithshëm të dataset-it, pasi që të dhënat janë pastruar dhe standardizuar.
+![image](https://github.com/user-attachments/assets/f8fb2868-c0c2-47d1-a2fa-84743e846540)
+ Nëse kalojmë përgjatë kësaj tabele, shihen edhe marrëdhëniet që kanë vetitë e dataset-it ndërmjet veti.
+![image](https://github.com/user-attachments/assets/328416fe-b6cc-44be-b9d5-24f669365df6)
+Meqë qëllimi i projektit ka qenë të parashikohen reshjet përgjatë muajve dhe viteve, atëherë është dhënë një pamje më e detajuar e kolonës *date* dhe një histogram, që vizualizon shpërndarjen e të dhënave të reshjeve në bazë të kohës (kolona date) nga viti 1981 deri në 2025.
+![image](https://github.com/user-attachments/assets/5dfd1fa0-d38c-4b72-8f1d-fae3f4df405f)
+
 
 
 Faza III:

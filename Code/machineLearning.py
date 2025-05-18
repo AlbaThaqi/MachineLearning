@@ -173,8 +173,32 @@ best_rf = rf_grid.best_estimator_
 best_rf_pred = best_rf.predict(X_test)
 print_metrics("Optimized Random Forest", y_test, best_rf_pred)
 
-##vazhdo prej ktu
+# === Save best model ===
+if ENABLE_SAVE_MODEL:
+    dump(best_rf, "best_rf_model.joblib")
+    print("Saved best_rf_model.joblib")
 
+
+# === Clustering and Visualization ===
+X_sample = X.sample(n=3000, random_state=42)
+y_sample = y.loc[X_sample.index]
+
+agg = AgglomerativeClustering(n_clusters=2).fit_predict(X_sample)
+spectral = SpectralClustering(n_clusters=2, assign_labels='kmeans', affinity='nearest_neighbors').fit_predict(X_sample)
+
+print("\nARI Agglomerative:", adjusted_rand_score(y_sample, agg))
+print("ARI Spectral     :", adjusted_rand_score(y_sample, spectral))
+
+X_pca = PCA(n_components=2).fit_transform(X_sample)
+plt.figure(figsize=(12, 5))
+plt.subplot(1, 2, 1)
+sns.scatterplot(x=X_pca[:, 0], y=X_pca[:, 1], hue=agg, palette='Set1')
+plt.title("Agglomerative Clustering")
+plt.subplot(1, 2, 2)
+sns.scatterplot(x=X_pca[:, 0], y=X_pca[:, 1], hue=spectral, palette='Set2')
+plt.title("Spectral Clustering")
+plt.tight_layout()
+plt.show()
 
 
 dataset.replace({'?': None, 'missing': None, 'N/A': None}, inplace=True)

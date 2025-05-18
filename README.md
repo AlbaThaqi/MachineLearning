@@ -374,6 +374,24 @@ Vizualizimi i vlerave null nëpër secilën kolonë para trajnimit të datasetit
 Analiza e Ndërveprimeve - Ndërveprimet midis variablave në dataset-in e reshjeve. Ndryshimet në reshje janë të dukshme sipas rajoneve (ADM2_PCODE). Ndërveprimet sugjerojnë që modelet e parashikimit duhet të marrin parasysh vendndodhjen gjeografike dhe kohën e vitit.
 ![image](https://github.com/user-attachments/assets/44f6c12e-5bb3-4023-8e08-4799df7934f2)  
 
+Në këtë figurë janë analizuar kolonat rfq, r1q dhe r3q, të cilat përfaqësojnë sasinë e reshjeve në total dhe për intervalet kohore 1h dhe 3h. Histogramët tregojnë një shpërndarje të pabalancuar, ku shumica e vlerave janë të ulëta, ndërsa disa pika ekstreme paraqesin reshje të mëdha. Kjo pasqyrohet edhe në vlerat e skew që tejkalojnë 1. Për të përmirësuar këtë shpërndarje, në kod janë aplikuar transformime logaritmike (log1p), që shërbejnë për të zvogëluar ndikimin e outliers dhe për të bërë të dhënat më të përshtatshme për modelet e klasifikimit.
+
+![qeto](https://github.com/user-attachments/assets/4e00a3c1-a711-465f-a871-d110ff6edf13)
+
+Kjo figurë tregon analizën e kolonave n_pixels dhe rfh_avg. Kolona n_pixels përmban shumë pak vlera të ndryshme, çka tregon variacion të ulët dhe ndikim potencialisht të vogël në model. Ndërkohë, rfh_avg, që përfaqëson mesataren e reshjeve orare, ka një shpërndarje pak të djathtë, por të pranueshme për modelim pas standardizimit. Këto të dhëna tregojnë që ndërsa disa veçori mund të kenë më shumë informatë, të tjerat mund të kenë nevojë për vlerësim të kujdesshëm për peshën që i jepet gjatë trajnimit.
+
+
+![qeto1](https://github.com/user-attachments/assets/6abda029-821f-425a-a5d6-0a43368d2841)
+
+Në këtë figurë vërehen shpërndarjet e kolonave që përfaqësojnë reshje në periudha të shkurtra kohore: 1 orë dhe 3 orë, bashkë me mesataret përkatëse. Pas transformimeve të aplikuara në kod, histogramët e train dhe test duken të balancuara dhe mjaft të ngjashme, çka tregon një ndarje të drejtë të dataset-it. r3h_avg veçanërisht ka një shpërndarje shumë afër normales, me skew minimal. Kjo sugjeron që këto veçori janë të përgatitura mirë për modelim dhe ka gjasa të kontribuojnë pozitivisht në performancën e klasifikuesve.
+
+![qeto2](https://github.com/user-attachments/assets/1f1c62f2-7d74-4ce7-961b-60dc20b0a895)
+
+Figura e fundit paraqet sërish kolonat rfq, r1q dhe r3q, duke ofruar një verifikim të mëtejshëm të shpërndarjes së këtyre veçorive pas ndarjes në train dhe test. Distribucionet e të dhënave mbeten të ngjashme mes dy seteve, duke treguar konsistencë dhe mungesë bias-i. Kjo përforcon faktin që ndarja e të dhënave është bërë me stratifikim të saktë dhe se të dhënat janë të përgatitura mirë për trajnimin e mëtejshëm të modeleve të Machine Learning.
+
+![qeto3](https://github.com/user-attachments/assets/52e44ada-fc87-4176-8424-53b4a4711d75)
+
+
 
 
 ## Rezultatet 

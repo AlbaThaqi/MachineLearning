@@ -309,30 +309,78 @@ Për të vlerësuar performancën e modelit bazë dhe atij të optimizuar, u nd�
 Për secilin model, u llogaritën metrikat kryesore si saktësia (accuracy) dhe F1 score duke përdorur të dhënat e testimit. Këto metrika u ruajtën në formë liste dhe më pas u përfshinë në një tabelë krahasuese (compare_df), që shërben si bazë për analizimin e përmirësimeve pas ritrajnimit dhe për vizualizimin e tyre.
 
 ![image](https://github.com/user-attachments/assets/dad9577e-e7a0-4527-a80b-6e69123434dd)
+
+## Veglat dhe aplikimi në ML 
+
+Në rastin tonë kemi përdoru 5 vegla: ydata_profiling, sweetviz, mlflow, wandb dhe joblib.
+
+**YDATA_PROFILING** 
+Një vegël për analizë eksploruese të të dhënave (EDA) që gjeneron automatikisht një raport të plotë mbi dataset-in. Përdoret për të kuptuar shpërndarjen e kolonave, mungesat, outliers, korelacionet dhe strukturën e përgjithshme të të dhënave pa shkruar kod analizues manual.Gjeneron një raport interaktiv në format HTML dhe ruhen në rainfall_report.html.
+
+**SWEETVIZ**
+Një vegël për krahasim të veçorive ndërmjet dy seteve të të dhënave – zakonisht train dhe test.
+Shërben për të kontrolluar nëse ndarja e të dhënave ka ndikuar në strukturën e tyre dhe për të analizuar se si shpërndahen veçoritë krahasuar me targetin.HTML raport me grafikë dhe analiza automatike ruhen në sweetviz_report.html.
+
+**MLFLOW**
+Platformë për menaxhimin e ciklit jetësor të eksperimenteve të Machine Learning.
+Regjistron parametrat, metrikat, dhe vetë modelin gjatë çdo eksperimenti. Lejon krahasim ndërmjet konfigurimeve të ndryshme dhe gjeneron një dashboard lokal. Të dhëna për parametrat dhe metrikat e modelit në sistemin Web UI lokal, dhe një strukturë dosjeje .mlruns/ për ruajtje të brendshme ku shfaqet me komandën mlflow ui në http://localhost:5000.
+
+**WANDB**
+Një platformë cloud për ndjekjen dhe vizualizimin e eksperimenteve të ML në kohë reale.Vizualizon grafikët e performancës (accuracy, loss, F1, etj), ruan historikun e konfigurimeve, dhe mbështet punën në ekip ku shfaqet në faqen wandb.ai, në projektin e konfiguruar nga përdoruesi.
+
+**JOBLIB**
+Librari për ruajtjen dhe ngarkimin e objekteve Python, zakonisht përdoret për të ruajtur modele të trajnuara. Lejon që një model i trajnuar të ruhet si skedar binar dhe të rishfrytëzohet më vonë pa e ritrajnuar ku ruhen në best_rf_model.joblib.
+
 ## Gjenerimi i file-s
 Për të përmbledhur më mirë punën e kryer gjatë këtij projekti, janë gjeneruar dy file-s, që paraqesin një përshkrim të punës, duke filluar nga dataset-i, karakteristikat e dataset-it dhe deri te rezultatet.
 Figura e mëposhtme shfaq një përshkrim të përgjithshëm të dataset-it, pasi që të dhënat janë pastruar dhe standardizuar.
+
 ![image](https://github.com/user-attachments/assets/f8fb2868-c0c2-47d1-a2fa-84743e846540)
+
  Nëse kalojmë përgjatë kësaj tabele, shihen edhe marrëdhëniet që kanë vetitë e dataset-it ndërmjet veti.
+ 
 ![image](https://github.com/user-attachments/assets/328416fe-b6cc-44be-b9d5-24f669365df6)
+
 Meqë qëllimi i projektit ka qenë të parashikohen reshjet përgjatë muajve dhe viteve, atëherë është dhënë një pamje më e detajuar e kolonës *date* dhe një histogram, që vizualizon shpërndarjen e të dhënave të reshjeve në bazë të kohës (kolona date) nga viti 1981 deri në 2025.
+
 ![image](https://github.com/user-attachments/assets/5dfd1fa0-d38c-4b72-8f1d-fae3f4df405f)
+
 Matrica e korrelacionit tregon marrëdhënien ndërmjet karakteristikave të datasetit, duke u paraqitur në intervalin [0-1]. Sa më e lartë të jetë vlera (ose më e theksuar ngjyra), aq më e lartë është marrëdhënia ndërmjet dy karakteristikave, për të ndikuar në rreshje.
+
 ![image](https://github.com/user-attachments/assets/aeae8cf6-3fd7-4671-b469-863ade8a0a73)
+
 Vizualizimi i vlerave null nëpër secilën kolonë para trajnimit të datasetit
+
 ![image](https://github.com/user-attachments/assets/b4f0c8c0-84d2-4c78-b0b1-3045a0020219)
 
+## Rezultatet 
+Pas ritrajnimit të dataset-it duke përdorur teknika si transformimi logaritmik, normalizimi i veçorive dhe optimizimi i hiperparametrave përmes GridSearchCV, u vu re një përmirësim i ndjeshëm në performancën e modelit Random Forest. Saktësia dhe F1-score e modelit të optimizuar u rritën krahasuar me versionin fillestar, duke treguar se përgatitja e kujdesshme e të dhënave dhe përzgjedhja e parametrave adekuatë ndikon drejtpërdrejt në efikasitetin e parashikimeve.
+
+![WhatsApp Image 2025-05-18 at 13 44 14_d89bfe05](https://github.com/user-attachments/assets/e8fbfad4-fdc4-4004-83dc-9fbb81682180)
+
+![WhatsApp Image 2025-05-18 at 13 44 14_3e3f1d2a](https://github.com/user-attachments/assets/fcd25792-e6cd-48f0-98fc-69732ab584b8)
+
+
+
+## Diskutime dhe konkluzion 
+Në këtë projekt u trajtua një dataset mbi reshjet klimatike, duke kaluar nëpër faza standarde të përgatitjes së të dhënave si pastrimi, transformimi logaritmik, normalizimi dhe ndarja në train/test. Për klasifikim u përdorën algoritmet RandomForestClassifier dhe DecisionTreeClassifier, ku përmirësimi i performancës u arrit përmes GridSearchCV.
+
+Përveç modeleve, janë integruar edhe vegla ndihmëse të Machine Learning si:
+
+**ydata_profiling** për analizë automatike të të dhënave,
+
+**sweetviz** për krahasim vizual të train/test,
+
+**mlflow** dhe **wandb** për regjistrim dhe vizualizim të eksperimenteve,dhe joblib për ruajtje të modelit final.
+
+Integrimi i këtyre veglave rriti transparencën, përsëritshmërinë dhe profesionalizmin e procesit të zhvillimit të modelit. Kjo qasje e plotë nga përgatitja e të dhënave deri te ruajtja e modelit përbën një cikël të plotë të Machine Learning dhe ofron një bazë solide për aplikime të mëtejshme në parashikimin e reshjeve ose fusha të tjera klimatike.
 
 
 
 
-Faza III:
-▪ Duhet të ndjekin hapat sikur për fazën e dytë të përshkruar, përmirësimet që janë arrit të
-bëhen, pra të paraqitet kontributi juaj në këtë projekt që të tjerët nuk kanë dhënë më parë,
-krahasim i rezultateve të kësaj faze me ato paraprake, diskutime në lidhje me rezultatet e
-fituara dhe nxjerrjen e konkluzioneve në lidhje me rezultatet tuaja. Çka keni arrit të
-paraqitni pas aplikimit të këtyre fazave dhe si mund të i lexojmë këto rezultate, kujt i
-ndihmojnë, si i ndihmojnë dhe çka mund të bëhet në të ardhmen, pas punës tuaj;
+
+
+
 
 
 

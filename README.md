@@ -317,6 +317,12 @@ Figura e mëposhtme shfaq një përshkrim të përgjithshëm të dataset-it, pas
 ![image](https://github.com/user-attachments/assets/328416fe-b6cc-44be-b9d5-24f669365df6)
 Meqë qëllimi i projektit ka qenë të parashikohen reshjet përgjatë muajve dhe viteve, atëherë është dhënë një pamje më e detajuar e kolonës *date* dhe një histogram, që vizualizon shpërndarjen e të dhënave të reshjeve në bazë të kohës (kolona date) nga viti 1981 deri në 2025.
 ![image](https://github.com/user-attachments/assets/5dfd1fa0-d38c-4b72-8f1d-fae3f4df405f)
+Matrica e korrelacionit tregon marrëdhënien ndërmjet karakteristikave të datasetit, duke u paraqitur në intervalin [0-1]. Sa më e lartë të jetë vlera (ose më e theksuar ngjyra), aq më e lartë është marrëdhënia ndërmjet dy karakteristikave, për të ndikuar në rreshje.
+![image](https://github.com/user-attachments/assets/aeae8cf6-3fd7-4671-b469-863ade8a0a73)
+Vizualizimi i vlerave null nëpër secilën kolonë para trajnimit të datasetit
+![image](https://github.com/user-attachments/assets/b4f0c8c0-84d2-4c78-b0b1-3045a0020219)
+
+
 
 
 

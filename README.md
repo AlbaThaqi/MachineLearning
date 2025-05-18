@@ -245,9 +245,9 @@ Ngjashëm me grafikën e mëparshëm, ky vizualizim tregon rezultatet e Spectral
 
 
 # Faza e tretë
-Ritrajnimi i datasetit dhe përdorimi i veglave të ML
-Pas përpunimit fillestar dhe analizës eksploruese të të dhënave klimatike të reshjeve, është ndërmarrë faza e ritrajnimit me qëllim përmirësimin e performancës së modeleve të Machine Learning. 
-Kjo fazë përfshinte aplikimin e teknikave të avancuara si optimizimi i hiperparametrave përmes GridSearchCV, përdorimi i transformimeve logaritmike për trajtimin e shpërndarjeve jo normale dhe normalizimi i plotë i veçorive numerike për të ruajtur qëndrueshmërinë në trajnim.
+Ritrajnimi i datasetit dhe përdorimi i veglave të ML  
+- Pas përpunimit fillestar dhe analizës eksploruese të të dhënave klimatike të reshjeve, është ndërmarrë faza e ritrajnimit me qëllim përmirësimin e performancës së modeleve të Machine Learning. 
+Kjo fazë përfshin aplikimin e teknikave të avancuara, si optimizimi i hiperparametrave përmes GridSearchCV, përdorimi i transformimeve logaritmike për trajtimin e shpërndarjeve jo normale dhe normalizimi i plotë i veçorive numerike për të ruajtur qëndrueshmërinë në trajnim.
 Kodi i përshtatet fazës së dytë me disa përmisime të rezultateve.
 
 **Optimizimi i Decision Tree me GridSearchCV** - mundohet ti eksploroj kombinime të ndryshme të hiperparametrave për DecisionTreeClassifier.

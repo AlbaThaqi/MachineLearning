@@ -317,23 +317,38 @@ Në rastin tonë kemi përdoru 5 vegla: ydata_profiling, sweetviz, mlflow, wandb
 
 Një vegël për analizë eksploruese të të dhënave (EDA) që gjeneron automatikisht një raport të plotë mbi dataset-in. Përdoret për të kuptuar shpërndarjen e kolonave, mungesat, outliers, korelacionet dhe strukturën e përgjithshme të të dhënave pa shkruar kod analizues manual.Gjeneron një raport interaktiv në format HTML dhe ruhen në rainfall_report.html.
 
+![image](https://github.com/user-attachments/assets/e9ea2fb3-d891-4152-a13b-78921409f74f)
+
+
 **SWEETVIZ**
 
 Një vegël për krahasim të veçorive ndërmjet dy seteve të të dhënave – zakonisht train dhe test.
 Shërben për të kontrolluar nëse ndarja e të dhënave ka ndikuar në strukturën e tyre dhe për të analizuar se si shpërndahen veçoritë krahasuar me targetin.HTML raport me grafikë dhe analiza automatike ruhen në sweetviz_report.html.
+
+![image](https://github.com/user-attachments/assets/eb2b3b88-6136-4e74-b98f-2627380e3c89)
+
 
 **MLFLOW**
 
 Platformë për menaxhimin e ciklit jetësor të eksperimenteve të Machine Learning.
 Regjistron parametrat, metrikat, dhe vetë modelin gjatë çdo eksperimenti. Lejon krahasim ndërmjet konfigurimeve të ndryshme dhe gjeneron një dashboard lokal. Të dhëna për parametrat dhe metrikat e modelit në sistemin Web UI lokal, dhe një strukturë dosjeje .mlruns/ për ruajtje të brendshme ku shfaqet me komandën mlflow ui në http://localhost:5000.
 
+![image](https://github.com/user-attachments/assets/8512b5d5-4053-4755-81ed-2031e6db98d6)
+
+
 **WANDB**
 
 Një platformë cloud për ndjekjen dhe vizualizimin e eksperimenteve të ML në kohë reale.Vizualizon grafikët e performancës (accuracy, loss, F1, etj), ruan historikun e konfigurimeve, dhe mbështet punën në ekip ku shfaqet në faqen wandb.ai, në projektin e konfiguruar nga përdoruesi.
 
+![image](https://github.com/user-attachments/assets/b5b11095-4437-4655-b9df-4437fc0f9267)
+
+
 **JOBLIB**
 
 Librari për ruajtjen dhe ngarkimin e objekteve Python, zakonisht përdoret për të ruajtur modele të trajnuara. Lejon që një model i trajnuar të ruhet si skedar binar dhe të rishfrytëzohet më vonë pa e ritrajnuar ku ruhen në best_rf_model.joblib.
+
+![image](https://github.com/user-attachments/assets/769b6804-6aa1-4766-a691-4f5158493500)
+
 
 ## Gjenerimi i file-s
 Për të përmbledhur më mirë punën e kryer gjatë këtij projekti, janë gjeneruar dy file-s, që paraqesin një përshkrim të punës, duke filluar nga dataset-i, karakteristikat e dataset-it dhe deri te rezultatet.
